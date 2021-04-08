@@ -1,0 +1,90 @@
+{
+  "name": "elundus-core",
+  "description": "Use this simple desktop application to simulate StreamElements text-to-speech (TTS) voice messages for Twitch. Hear how a donation for your favorite streamer sounds like!",
+  "version": "0.1.0",
+  "author": {
+    "name": "Sietse Trommelen"
+  },
+  "repository": "https://github.com/SietseTrommelen/ElundusCoreApp",
+  "private": true,
+  "homepage": "./",
+  "main": "./public/electron.js",
+  "build": {
+    "appId": "sito.elunduscore",
+    "productName": "Elundus Core",
+    "copyright": "Copyright © 2021 ${author}",
+    "win": {
+      "icon": "public/icon.png"
+    },
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    }
+  },
+  "publish": {
+    "provider": "github",
+    "repo": "ElundusCoreApp",
+    "owner": "SietseTrommelen",
+    "host": "github.com",
+    "protocol": "https",
+    "releaseType": "draft"
+  },
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "axios": "^0.21.1",
+    "cors": "^2.8.5",
+    "electron-is-dev": "^2.0.0",
+    "electron-log": "^4.3.3",
+    "electron-updater": "^4.3.8",
+    "express": "^4.17.1",
+    "file-saver": "^2.0.5",
+    "loadable": "^1.0.0",
+    "lz-string": "^1.4.4",
+    "plyr": "^3.6.4",
+    "react": "^17.0.2",
+    "react-bootstrap": "^1.5.2",
+    "react-dom": "^17.0.2",
+    "react-redux": "^7.2.3",
+    "react-scripts": "4.0.3",
+    "redux": "^4.0.5",
+    "wait-on": "^5.3.0",
+    "web-vitals": "^1.0.1"
+  },
+  "scripts": {
+    "dev": "concurrently \"yarn start\" \"wait-on http://localhost:3000 && electron .\"",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "preelectron-pack": "yarn build",
+    "electron-pack": "electron-builder -w"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "electron": "^12.0.2",
+    "electron-builder": "^22.10.5",
+    "prop-types": "^15.7.2"
+  }
+}

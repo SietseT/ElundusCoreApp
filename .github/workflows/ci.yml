@@ -6,7 +6,10 @@ name: CI - Windows
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ main, develop ]
+    branches:
+      - main
+      - develop
+      - feature/action
   pull_request:
     branches: [ main ]
 
@@ -19,6 +22,9 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: windows-latest
+
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
