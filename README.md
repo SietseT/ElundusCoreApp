@@ -8,6 +8,8 @@
 
 Elundus Core is a desktop application you can use to simulate/preview text-to-speech (TTS) voice messages for Twitch. It's a port of the website https://www.elunduscore.com that I've initially created for the same purpose.
 
+**Wondering why I've made the step to change it to a desktop application? Check out the [FAQ](https://github.com/SietseT/ElundusCoreApp#why-did-you-make-an-application-instead-of-continuing-to-support-httpswwwelunduscorecom).**
+
 # Features
 - Text-to-speech conversion for Amazon Polly voices (same voices are used by StreamElements and StreamLabs)
 - Download converted TTS sound (see FAQ)
