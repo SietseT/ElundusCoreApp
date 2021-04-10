@@ -22,9 +22,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# ide
-*.code-workspace
-
 # nodejs/electron
 /build
 /dist
