@@ -1,7 +1,5 @@
 import React from "react"
 import { connect } from "react-redux"
-import LZString from "lz-string"
-
 import StreamElementsHelper from "../../helpers/streamelementshelper"
 import { UrlHelper } from "../../helpers/urlhelper"
 
@@ -15,14 +13,12 @@ class TextToSpeechForm extends React.Component {
     constructor() {
         super();
 
-        let urlTts = this.getTtsFromUrl();
-
         this.defaultVoice = 'Brian';
         this.defaultText = '';
 
         this.state = {
-            text: urlTts !== undefined ? urlTts.text : this.defaultText,
-            voice: urlTts !== undefined ? urlTts.voice : this.defaultVoice,
+            text: this.defaultText,
+            voice: this.defaultVoice,
             characterCount: 0,
             textMaxLength: 500,
             isLoading: false
@@ -31,23 +27,6 @@ class TextToSpeechForm extends React.Component {
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.callStreamElementsAndDispatch = this.callStreamElementsAndDispatch.bind(this);
-    }
-
-    getTtsFromUrl() {
-        
-        let encodedTtsFromUrl = UrlHelper.getQueryStringValue('tts');
-        if (encodedTtsFromUrl) {
-
-            try {
-                return JSON.parse(LZString.decompressFromEncodedURIComponent(encodedTtsFromUrl));
-            }
-            catch {
-                return undefined;
-            }
-        }
-        
-
-        return undefined;
     }
 
     setLoading(value) {
@@ -100,20 +79,7 @@ class TextToSpeechForm extends React.Component {
 
         this.setState({
             [name]: value
-        }, () => {
-
-            if (this.state.text === this.defaultText && this.state.voice === this.defaultVoice) {
-                UrlHelper.replaceUrl(UrlHelper.ToAbsoluteUrl('/'));
-                return;
-            }
-
-            let json = JSON.stringify({ voice: this.state.voice, text: this.state.text });
-            let compressed = LZString.compressToEncodedURIComponent(json);
-
-            UrlHelper.replaceUrl(UrlHelper.setQueryStringValue('tts', compressed));
         });
-
-
     }
 
     render() {

@@ -14,8 +14,8 @@ export default class StreamElementsHelper {
         }
 
         //Replace invalid characters
-        text = text.replace("&", "%26");
-        text = text.replace("#", "%23");
+        text = text.replaceAll("&", "%26");
+        text = text.replaceAll("#", "%23");
 
         let url = this.GetStreamElementsUrl(voice, text);
 
