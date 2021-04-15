@@ -17,6 +17,11 @@ on:
       - 'yarn.lock'
   pull_request:
     branches: [ main ]
+    paths:
+      - 'src/**'
+      - 'public/**'
+      - 'package.json'
+      - 'yarn.lock'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
