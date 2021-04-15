@@ -1,7 +1,6 @@
 import React from "react"
 import { connect } from "react-redux"
 import StreamElementsHelper from "../../helpers/streamelementshelper"
-import { UrlHelper } from "../../helpers/urlhelper"
 
 import Form from "react-bootstrap/Form"
 import InputGroup from "react-bootstrap/InputGroup"
