@@ -138,9 +138,11 @@ class TextToSpeechForm extends React.Component {
                         <optgroup label="English (US)">
                             <option>Ivy</option>
                             <option>Joanna</option>
+                            <option>Joey</option>
                             <option>Justin</option>
                             <option>Kendra</option>
                             <option>Kimberly</option>
+                            <option>Matthew</option>
                             <option>Salli</option>
                         </optgroup>
                         <optgroup label="English (Australian)">
@@ -151,20 +153,101 @@ class TextToSpeechForm extends React.Component {
                             <option>Geraint</option>
                         </optgroup>
                         <optgroup label="English (Indian)">
+                            <option>Aditi</option>
                             <option>Raveena</option>
+                        </optgroup>
+                        <optgroup label="Arabic">
+                            <option>Zeina</option>
+                        </optgroup>
+                        <optgroup label="Chinese, Mandarin">
+                            <option>Zhiyu</option>
+                        </optgroup>
+                        <optgroup label="Danish">
+                            <option>Naja</option>
+                            <option>Mads</option>
+                        </optgroup>
+                        <optgroup label="Dutch">
+                            <option>Lotte</option>
+                            <option>Ruben</option>
+                        </optgroup>
+                        <optgroup label="French">
+                            <option>Celine</option>
+                            <option>Lea</option>
+                            <option>Mathieu</option>
+                        </optgroup>
+                        <optgroup label="French (Canadian)">
+                            <option>Chantal</option>
+                        </optgroup>
+                        <optgroup label="German">
+                            <option>Marlene</option>
+                            <option>Vicki</option>
+                            <option>Hans</option>
+                        </optgroup>
+                        <optgroup label="Hindi">
+                            <option>Aditi</option>
+                        </optgroup>
+                        <optgroup label="Icelandic">
+                            <option>Dora</option>
+                            <option>Karl</option>
+                        </optgroup>
+                        <optgroup label="Italian">
+                            <option>Bianca</option>
+                            <option>Carla</option>
+                            <option>Giorgio</option>
+                        </optgroup>
+                        <optgroup label="Japanese">
+                            <option>Mizuki</option>
+                            <option>Takumi</option>
+                        </optgroup>
+                        <optgroup label="Korean">
+                            <option>Seoyeon</option>
+                        </optgroup>
+                        <optgroup label="Norwegian">
+                            <option>Liv</option>
+                        </optgroup>
+                        <optgroup label="Polish">
+                            <option>Ewa</option>
+                            <option>Jacek</option>
+                            <option>Jan</option>
+                            <option>Maja</option>
+                        </optgroup>
+                        <optgroup label="Portuguese (Brazilian)">
+                            <option>Camila</option>
+                            <option>Ricardo</option>
+                            <option>Vitoria</option>
+                        </optgroup>
+                        <optgroup label="Portuguese (European)">
+                            <option>Cristiano</option>
+                            <option>Ines</option>
+                        </optgroup>
+                        <optgroup label="Romanian">
+                            <option>Carmen</option>
+                        </optgroup>
+                        <optgroup label="Russian">
+                            <option>Maxim</option>
+                            <option>Tatyana</option>
                         </optgroup>
                         <optgroup label="Spanish (European)">
                             <option>Conchita</option>
-                            <option>Lucia</option>
                             <option>Enrique</option>
+                            <option>Lucia</option>
                         </optgroup>
                         <optgroup label="Spanish (Mexican)">
                             <option>Mia</option>
                         </optgroup>
                         <optgroup label="Spanish (US)">
                             <option>Lupe</option>
-                            <option>Penelope</option>
                             <option>Miguel</option>
+                            <option>Penelope</option>
+                        </optgroup>
+                        <optgroup label="Swedish">
+                            <option>Astrid</option>
+                        </optgroup>                        
+                        <optgroup label="Turkish">
+                            <option>Filiz</option>
+                        </optgroup>
+                        <optgroup label="Welsh">
+                            <option>Gwyneth</option>
                         </optgroup>
                     </Form.Control>
                 </InputGroup>
