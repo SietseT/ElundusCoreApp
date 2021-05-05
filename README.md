@@ -53,8 +53,10 @@ Examples of converters are:
 # Contributing
 Requirments for developing are:
 - NodeJS
-- Yarn
-- Electron installed globally using NPM (```npm install electron -g```)
+- Yarn (```npm i -g yarn```)
+- Electron installed globally using NPM (```npm i -g electron```)
+
+You also need to install the node modules using ```npm i```
 
 To run the application with hot-reloading (apart from the NodeJS server), run ```yarn dev``` in the root of the repository.
 
