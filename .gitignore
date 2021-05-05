@@ -25,3 +25,5 @@ yarn-error.log*
 # nodejs/electron
 /build
 /dist
+
+package-lock.json
