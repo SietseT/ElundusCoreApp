@@ -119,7 +119,7 @@
         <div id="frameMain">
             <div id="frameContentWin">
                 <div id="frameTitleDock">
-                    <span id="frameTitleText">Elundus Core - V0.2.0</span>
+                    <span id="frameTitleText">Elundus Core - V0.0.0</span>
                 </div>
                 <div id="frameButtonDockWin">
                     <button class="frameButton fMb" id="frameButton_minimize" tabIndex="-1" onclick="minimizeFunction()">
@@ -151,6 +151,7 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
     <script>
+    // buttons script
       const { ipcRenderer } = require('electron');
 
       function closeFunction() {
@@ -160,6 +161,10 @@
       function minimizeFunction() {
         ipcRenderer.send('minimize-app');
       }
+
+    // automatically set the version in the title of the app
+    var appVersion = require('electron').remote.app.getVersion();
+    document.getElementById('frameTitleText').innerHTML = 'Elundus Core - V' + appVersion;
     </script>
 </body>
 
