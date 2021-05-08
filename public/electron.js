@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu, session } = require('electron');
+const { app, BrowserWindow, Menu, session, ipcMain } = require('electron');
 const isDev = require('electron-is-dev');
 const log = require('electron-log');
 const shell = require('electron').shell;
@@ -14,9 +14,13 @@ function createWindow() {
         width: 1024,
         height: 700,
         show: false,
+        frame: false,
+        webPreferences: {
+            nodeIntegration: true,
+            contextIsolation: false
+        },
+        resizable: false
     });
-
-    mainWindow.setResizable(false);
 
     const startURL = isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`;
 
@@ -32,6 +36,14 @@ function createWindow() {
         e.preventDefault();
         shell.openExternal(url);
     });
+
+    ipcMain.on('close-app', (evt, arg) => {
+        app.quit();
+    })
+
+    ipcMain.on('minimize-app', (evt, arg) => {
+        mainWindow.minimize();
+    })
 }
 
 // Menu

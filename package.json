@@ -14,7 +14,13 @@
     "productName": "Elundus Core",
     "copyright": "Copyright © 2021 ${author}",
     "win": {
-      "icon": "public/icon.png"
+      "icon": "public/icon.png",
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "createDesktopShortcut": true
     },
     "files": [
       "build/**/*",
