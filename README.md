@@ -32,7 +32,7 @@ Elundus Core is a desktop application you can use to simulate/preview text-to-sp
 ---
 
 # Installation
-- Go to [releases](https://github.com/SietseT/ElundusCoreApp/releases) and download the setup from the latest release. Only Windows is supported. 
+- Go to [releases](https://github.com/SietseT/ElundusCoreApp/releases/latest) and download the setup from the latest release. Only Windows is supported. 
 - Run the setup. If you get a SmartScreen warning, select _More info_ and click _Run anyway_.
 - Start Elundus Core using the shortcut created on your desktop or from the start menu.
 
@@ -78,7 +78,7 @@ Examples of converters are:
 ---
 
 # Contributing
-To download the project source code and start developing :
+To download the project source code and start developing:
 
 1) You can use [Git](https://git-scm.com/downloads) as the CLI but it is not required
 2) Install [NodeJS](https://nodejs.org/)
