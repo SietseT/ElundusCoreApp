@@ -1,5 +1,3 @@
-![preview](https://i.imgur.com/1EyWnIZ.png)
-
 # Elundus Core (desktop) 
 [![GitHub build](https://img.shields.io/github/workflow/status/SietseT/ElundusCoreApp/CI%20-%20Windows/main?style=flat-square)]()
 [![GitHub version](https://img.shields.io/github/v/release/SietseT/ElundusCoreApp?style=flat-square)]()
@@ -8,7 +6,22 @@
 
 Elundus Core is a desktop application you can use to simulate/preview text-to-speech (TTS) voice messages for Twitch. It's a port of the website https://www.elunduscore.com that I've initially created for the same purpose.
 
-**Wondering why I've made the step to change it to a desktop application? Check out the [FAQ](https://github.com/SietseT/ElundusCoreApp#why-did-you-make-an-application-instead-of-continuing-to-support-httpswwwelunduscorecom).**
+<details>
+  <summary><b>Screenshot</b></summary>
+  <img src="https://i.imgur.com/1EyWnIZ.png">
+</details>
+
+**Wondering why I've made the step to change it to a desktop application? Check out the [FAQ](https://github.com/SietseT/ElundusCoreApp#faq).**
+
+---
+
+- [Features](https://github.com/SietseT/ElundusCoreApp#features)
+- [Installation](https://github.com/SietseT/ElundusCoreApp#installation)
+- [How it works](https://github.com/SietseT/ElundusCoreApp#how-it-works)
+- [FAQ](https://github.com/SietseT/ElundusCoreApp#faq)
+- [Contributing](https://github.com/SietseT/ElundusCoreApp#contributing)
+
+---
 
 # Features
 - Text-to-speech conversion for Amazon Polly voices (same voices are used by StreamElements and StreamLabs)
@@ -16,16 +29,24 @@ Elundus Core is a desktop application you can use to simulate/preview text-to-sp
 - No more Recaptcha! 🎉
 - Auto-updater, so you'll receive the latest features and fixes automatically
 
+---
+
 # Installation
 - Go to [releases](https://github.com/SietseT/ElundusCoreApp/releases) and download the setup from the latest release. Only Windows is supported. 
 - Run the setup. If you get a SmartScreen warning, select _More info_ and click _Run anyway_.
 - Start Elundus Core using the shortcut created on your desktop or from the start menu.
 
+---
+
 # How it works
 The frontend, apart from a few minor tweaks, is exactly the same as the https://www.elunduscore.com website that I've made. But instead of calling an external API, the application comes bundled with it's own API which in turn calls the [Streamlabs](https://streamlabs.com) API to convert the text-to-speech.
 
+---
+
 # FAQ
-## Why did you make an application instead of continuing to support https://www.elunduscore.com?
+<details>
+  <summary><b>Why did you make an application instead of continuing to support https://www.elunduscore.com?</b></summary>
+  <br />
 Elundus Core started out as a project for me to test out some donation messages for xQc, using the **[StreamElements](https://streamelements.com/) API**. Keep this in mind, this is important for later.
 
 I decided make it public and host it as a website, mainly because of the low costs. Back then it was just a static website built with [GatsbyJS](https://www.gatsbyjs.com/), so it didn't cost much for me to host it and it was worth it. I wanted to perfect the website, so I've strived to get a high as possible score in [Google Lighthouse](https://developers.google.com/web/tools/lighthouse/) and made sure to get SEO right, so the website would show up in Google.
@@ -41,23 +62,35 @@ Apparently the Streamlabs API had a rate limit. Meaning you could only do 20 cal
 I've then decided this had to be fixed and created a proxy server system in order to prevent rate-limiting to occur. The website still calls 1 API, but the API then calls one of the proxy servers (and kept track of which one was rate-limited and which wasn't), and the proxy server in turn calls the Streamlabs API to convert the message.
 
 This setup still works to this day, but having to host more and more proxies as the popularity increases is not a working solution for me. I've had the idea for a few months now, but finally made a desktop application for Elundus Core which comes with it's own bundled API which calls Streamlabs, which means I don't have to host an API or proxyservers anymore.
+</details>
 
-## I can't play the downloaded TTS sound
+<details>
+  <summary><b>I can't play the downloaded TTS sound</b></summary>
+  <br />
 The Streamlabs sound file is in the [Ogg Vorbis](https://en.wikipedia.org/wiki/Vorbis) format. You can download a codec to open it in your favorite music player/editing software. I didn't have much luck myself using the codec, so I used a converter to convert the file to MP3 so you don't have to install a codec. Sadly I can't convert the file in the application itself.
 
 Examples of converters are:
 - [FlicFlac](https://github.com/DannyBen/FlicFlac) (open-source application)
 - [Convertio](https://convertio.co/oga-mp3/) (online)
 - [Cloudconvert](https://cloudconvert.com/oga-to-mp3) (online)
+</details>
+
+---
 
 # Contributing
-Requirments for developing are:
-- NodeJS
-- Yarn (```npm i -g yarn```)
-- Electron installed globally using NPM (```npm i -g electron```)
+To download the project source code and start developing :
 
-You also need to install the node modules using ```npm i```
+1) You can use [Git](https://git-scm.com/downloads) as the CLI but it is not required
+2) Install [NodeJS](https://nodejs.org/)
+3) Install Yarn using the [Windows Installer](https://classic.yarnpkg.com/latest.msi) or `npm i -g yarn`
+4) Install electron globally `npm i -g electron`
+5) Download the project source code `git clone https://SietseT/ElundusCoreApp.git`
+6) Go in the project folder `cd ElundusCoreApp`
+7) And finally, install the project dependencies `npm i`
 
-To run the application with hot-reloading (apart from the NodeJS server), run ```yarn dev``` in the root of the repository.
 
-After you've made a change, submit a pull-request and I'll look at it and decide if it comes in the next release.
+To run the application with hot-reloading (apart from the NodeJS server), run `yarn dev` in the root of the repository.
+
+To compile the app and make an installer run `npm run electron-pack`
+
+If you made somes changes and want them added in the main project, submit a pull-request and I'll look at it and decide if it will be added.
