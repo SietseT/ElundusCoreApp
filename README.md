@@ -47,7 +47,8 @@ The frontend, apart from a few minor tweaks, is exactly the same as the https://
 <details>
   <summary><b>Why did you make an application instead of continuing to support https://www.elunduscore.com?</b></summary>
   <br />
-Elundus Core started out as a project for me to test out some donation messages for xQc, using the **[StreamElements](https://streamelements.com/) API**. Keep this in mind, this is important for later.
+
+Elundus Core started out as a project for me to test out some donation messages for xQc, using the [StreamElements](https://streamelements.com/) API. Keep this in mind, this is important for later.
 
 I decided make it public and host it as a website, mainly because of the low costs. Back then it was just a static website built with [GatsbyJS](https://www.gatsbyjs.com/), so it didn't cost much for me to host it and it was worth it. I wanted to perfect the website, so I've strived to get a high as possible score in [Google Lighthouse](https://developers.google.com/web/tools/lighthouse/) and made sure to get SEO right, so the website would show up in Google.
 
@@ -67,6 +68,7 @@ This setup still works to this day, but having to host more and more proxies as 
 <details>
   <summary><b>I can't play the downloaded TTS sound</b></summary>
   <br />
+  
 The Streamlabs sound file is in the [Ogg Vorbis](https://en.wikipedia.org/wiki/Vorbis) format. You can download a codec to open it in your favorite music player/editing software. I didn't have much luck myself using the codec, so I used a converter to convert the file to MP3 so you don't have to install a codec. Sadly I can't convert the file in the application itself.
 
 Examples of converters are:
