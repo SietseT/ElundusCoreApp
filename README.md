@@ -45,7 +45,7 @@ The frontend, apart from a few minor tweaks, is exactly the same as the https://
 
 # FAQ
 <details>
-  <summary><b>Why did you make an application instead of continuing to support https://www.elunduscore.com?</b></summary>
+  <summary><b>Why did you make an application instead continuing to develop the website?</b></summary>
   <br />
 
 Elundus Core started out as a project for me to test out some donation messages for xQc, using the [StreamElements](https://streamelements.com/) API. Keep this in mind, this is important for later.
@@ -66,15 +66,17 @@ This setup still works to this day, but having to host more and more proxies as 
 </details>
 
 <details>
-  <summary><b>I can't play the downloaded TTS sound</b></summary>
+  <summary><b>Why is there no MacOS support?</b></summary>
   <br />
   
-The Streamlabs sound file is in the [Ogg Vorbis](https://en.wikipedia.org/wiki/Vorbis) format. You can download a codec to open it in your favorite music player/editing software. I didn't have much luck myself using the codec, so I used a converter to convert the file to MP3 so you don't have to install a codec. Sadly I can't convert the file in the application itself.
+I don't personally own a MacOS device and it would be hard to fix any issues in the MacOS version. If you have a MacOS device and are willing to contribute to a stable MacOS version, please let me know!
+</details>
 
-Examples of converters are:
-- [FlicFlac](https://github.com/DannyBen/FlicFlac) (open-source application)
-- [Convertio](https://convertio.co/oga-mp3/) (online)
-- [Cloudconvert](https://cloudconvert.com/oga-to-mp3) (online)
+<details>
+  <summary><b>Why is there no phone support?</b></summary>
+  <br />
+  
+There are many phones around with operating systems and different browsers. It's hard to make a working website and continue developing features tested for all devices, that's why I converted the website to a Windows-only app. 
 </details>
 
 ---

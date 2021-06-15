@@ -1,0 +1,94 @@
+.audio-player {
+  height: 50px;
+  width: 100%;
+  background: #007bff;
+  box-shadow: 0 0 20px 0 #000a;
+  font-family: arial;
+  color: white;
+  font-size: 0.75em;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: 6px auto;
+}
+
+.audio-player .timeline {
+  background: white;
+  width: 100%;
+  position: relative;
+  cursor: pointer;
+  box-shadow: 0 2px 10px 0 #0008;
+}
+
+.audio-player .timeline .progress {
+  background: #278fff;
+  width: 0%;
+  height: 100%;
+  transition: 0.25s;
+  border-radius: 0;
+}
+
+.audio-player .controls {
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+  padding: 0 20px;
+}
+
+.audio-player .controls>* {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.audio-player .controls .toggle-play.play {
+  cursor: pointer;
+  position: relative;
+  left: 0;
+  height: 0;
+  width: 0;
+  border: 7px solid #0000;
+  border-left: 13px solid white;
+}
+
+.audio-player .controls .toggle-play.play:hover {
+  transform: scale(1.1);
+}
+
+.audio-player .controls .toggle-play.pause {
+  height: 15px;
+  width: 20px;
+  cursor: pointer;
+  position: relative;
+}
+
+.audio-player .controls .toggle-play.pause:before {
+  position: absolute;
+  top: 0;
+  left: 0px;
+  background: white;
+  content: "";
+  height: 15px;
+  width: 3px;
+}
+
+.audio-player .controls .toggle-play.pause:after {
+  position: absolute;
+  top: 0;
+  right: 8px;
+  background: white;
+  content: "";
+  height: 15px;
+  width: 3px;
+}
+
+.audio-player .controls .toggle-play.pause:hover {
+  transform: scale(1.1);
+}
+
+.audio-player .controls .time {
+  display: flex;
+}
+
+.audio-player .controls .time>* {
+  padding: 2px;
+}
