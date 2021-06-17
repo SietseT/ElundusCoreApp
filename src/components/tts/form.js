@@ -15,6 +15,13 @@ class TextToSpeechForm extends React.Component {
         this.defaultVoice = 'Brian';
         this.defaultText = '';
 
+        const voiceTextJson = localStorage.getItem("voiceText");
+        const savedVoiceText = JSON.parse(voiceTextJson);
+        if(savedVoiceText) {
+            this.defaultVoice = savedVoiceText.voice;
+            this.defaultText = savedVoiceText.text;
+        }
+
         this.state = {
             text: this.defaultText,
             voice: this.defaultVoice,
@@ -32,6 +39,15 @@ class TextToSpeechForm extends React.Component {
         this.setState({
             isLoading: value
         });
+    }
+
+    async componentDidUpdate() {
+        var voiceText = {
+            voice: this.state.voice,
+            text: this.state.text,
+        }
+
+        localStorage.setItem("voiceText", JSON.stringify(voiceText));
     }
 
     async handleSubmit(event) {
