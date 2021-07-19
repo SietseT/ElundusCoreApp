@@ -17,7 +17,7 @@ class TextToSpeechForm extends React.Component {
 
         const voiceTextJson = localStorage.getItem("voiceText");
         const savedVoiceText = JSON.parse(voiceTextJson);
-        if(savedVoiceText) {
+        if (savedVoiceText) {
             this.defaultVoice = savedVoiceText.voice;
             this.defaultText = savedVoiceText.text;
         }
@@ -27,13 +27,18 @@ class TextToSpeechForm extends React.Component {
             voice: this.defaultVoice,
             characterCount: 0,
             textMaxLength: 500,
-            isLoading: false
+            isLoading: false,
+            cleartext: false,
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.onKeyDown = this.onKeyDown.bind(this);
+        this.onKeyUp = this.onKeyUp.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.callStreamElementsAndDispatch = this.callStreamElementsAndDispatch.bind(this);
     }
+
+    keysPressed = {};
 
     setLoading(value) {
         this.setState({
@@ -63,9 +68,15 @@ class TextToSpeechForm extends React.Component {
             return;
         }
 
-        
+        if (this.state.cleartext) {
+            this.setState({
+                text: ""
+            });
+        }
+
+
         this.setLoading(true);
-        await this.callStreamElementsAndDispatch();        
+        await this.callStreamElementsAndDispatch();
     }
 
     async callStreamElementsAndDispatch() {
@@ -82,9 +93,25 @@ class TextToSpeechForm extends React.Component {
             this.props.dispatch({ type: 'SET_VOICE_TEXT', data: { voice: voice, text: text } });
         }
         else {
-            this.props.dispatch({ type: 'SET_ERROR', data: result.error });            
+            this.props.dispatch({ type: 'SET_ERROR', data: result.error });
         }
     }
+
+    async onKeyDown(event) {
+        console.log(event.key);
+        this.keysPressed[event.key] = true;
+
+        if (!this.keysPressed['Shift'] && event.key === 'Enter') {
+            event.preventDefault();
+            event.stopPropagation();
+            this.handleSubmit(event);
+        }
+    }
+
+    async onKeyUp(event) {
+        delete this.keysPressed[event.key];
+    }
+
 
     async handleInputChange(event) {
 
@@ -102,7 +129,7 @@ class TextToSpeechForm extends React.Component {
         const { textMaxLength, text, voice } = this.state;
 
         let characterCount = text.length;
-        
+
         //Hack to change input value. Textarea value is not changed after changing text state for some reason :/
         let textElement = document.getElementById('text');
         let voiceElement = document.getElementById('voice');
@@ -111,7 +138,7 @@ class TextToSpeechForm extends React.Component {
             textElement.value = text;
             voiceElement.value = voice;
         }
-        
+
 
         return (
             <Form className="mt-3 my-sm-3">
@@ -125,6 +152,8 @@ class TextToSpeechForm extends React.Component {
                         name="text"
                         placeholder="Type your text here..."
                         onChange={this.handleInputChange}
+                        onKeyDown={this.onKeyDown}
+                        onKeyUp={this.onKeyUp}
                         value={this.state.text}
                         rows="5"
                         maxLength={this.state.textMaxLength}
@@ -258,7 +287,7 @@ class TextToSpeechForm extends React.Component {
                         </optgroup>
                         <optgroup label="Swedish">
                             <option>Astrid</option>
-                        </optgroup>                        
+                        </optgroup>
                         <optgroup label="Turkish">
                             <option>Filiz</option>
                         </optgroup>
@@ -267,7 +296,10 @@ class TextToSpeechForm extends React.Component {
                         </optgroup>
                     </Form.Control>
                 </InputGroup>
-
+                <Form.Group className="mb-3" controlId="clearTextCheckbox">
+                    <Form.Check type="checkbox" aria-label="Clear text after submitting" role="checkbox" title="Clear text after submitting"
+                        name="cleartext" label="Clear text after submitting" onChange={this.handleInputChange} />
+                </Form.Group>
                 {!this.state.isLoading
                     ? <Button variant="primary" type="submit" block ref={input => this.submitButton = input} onClick={this.handleSubmit}>Submit</Button>
                     : <Button variant="primary" disabled block>
