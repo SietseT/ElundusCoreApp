@@ -35,6 +35,7 @@ class TextToSpeechForm extends React.Component {
         this.onKeyDown = this.onKeyDown.bind(this);
         this.onKeyUp = this.onKeyUp.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleCheckboxChanged = this.handleCheckboxChanged.bind(this);
         this.callStreamElementsAndDispatch = this.callStreamElementsAndDispatch.bind(this);
     }
 
@@ -74,7 +75,6 @@ class TextToSpeechForm extends React.Component {
             });
         }
 
-
         this.setLoading(true);
         await this.callStreamElementsAndDispatch();
     }
@@ -98,7 +98,6 @@ class TextToSpeechForm extends React.Component {
     }
 
     async onKeyDown(event) {
-        console.log(event.key);
         this.keysPressed[event.key] = true;
 
         if (!this.keysPressed['Shift'] && event.key === 'Enter') {
@@ -112,6 +111,16 @@ class TextToSpeechForm extends React.Component {
         delete this.keysPressed[event.key];
     }
 
+    async handleCheckboxChanged(event) {
+
+        const target = event.target;
+        const value = target.checked;
+        const name = target.name;
+
+        this.setState({
+            [name]: value
+        });
+    }
 
     async handleInputChange(event) {
 
@@ -298,7 +307,7 @@ class TextToSpeechForm extends React.Component {
                 </InputGroup>
                 <Form.Group className="mb-3" controlId="clearTextCheckbox">
                     <Form.Check type="checkbox" aria-label="Clear text after submitting" role="checkbox" title="Clear text after submitting"
-                        name="cleartext" label="Clear text after submitting" onChange={this.handleInputChange} />
+                        name="cleartext" label="Clear text after submitting" onChange={this.handleCheckboxChanged} />
                 </Form.Group>
                 {!this.state.isLoading
                     ? <Button variant="primary" type="submit" block ref={input => this.submitButton = input} onClick={this.handleSubmit}>Submit</Button>
