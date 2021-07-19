@@ -12,7 +12,7 @@ let mainWindow;
 function createWindow() {
     mainWindow = new BrowserWindow({
         width: 1024,
-        height: 700,
+        height: 750,
         show: false,
         title: "Elundus Core "  + app.getVersion()
     });
