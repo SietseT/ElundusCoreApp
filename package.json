@@ -56,7 +56,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "preelectron-pack": "yarn build",
-    "electron-pack": "electron-builder -w"
+    "electron-pack": "electron-builder"
   },
   "eslintConfig": {
     "extends": [
