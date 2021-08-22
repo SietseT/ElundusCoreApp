@@ -27,13 +27,18 @@ Elundus Core is a desktop application you can use to simulate/preview text-to-sp
 - Text-to-speech conversion for Amazon Polly voices (same voices are used by StreamElements and StreamLabs)
 - Download converted TTS sound (see FAQ)
 - No more Recaptcha! 🎉
+- Windows and MacOS support
 - Auto-updater, so you'll receive the latest features and fixes automatically
 
 ---
 
 # Installation
-- Go to [releases](https://github.com/SietseT/ElundusCoreApp/releases/latest) and download the setup from the latest release. Only Windows is supported. 
-- Run the setup. If you get a SmartScreen warning, select _More info_ and click _Run anyway_.
+- Go to [releases](https://github.com/SietseT/ElundusCoreApp/releases/latest) and download the setup from the latest release.
+  - On Windows, download the `.exe` file.
+  - On MacOS, download either the `.zip` or `.dmg` file.
+- Run the setup.
+  - Windows: if you get a SmartScreen warning, select _More info_ and click _Run anyway_.
+  - MacOS: Open the `.dmg` by right-clicking on it and selecting `open`, or try any of the installation methods in this [link](https://www.switchingtomac.com/tutorials/osx/how-to-run-unverified-apps-on-macos/).
 - Start Elundus Core using the shortcut created on your desktop or from the start menu.
 
 ---
@@ -66,17 +71,10 @@ This setup still works to this day, but having to host more and more proxies as 
 </details>
 
 <details>
-  <summary><b>Why is there no MacOS support?</b></summary>
-  <br />
-  
-I don't personally own a MacOS device and it would be hard to fix any issues in the MacOS version. If you have a MacOS device and are willing to contribute to a stable MacOS version, please let me know!
-</details>
-
-<details>
   <summary><b>Why is there no phone support?</b></summary>
   <br />
   
-There are many phones around with operating systems and different browsers. It's hard to make a working website and continue developing features tested for all devices, that's why I converted the website to a Windows-only app. 
+There are many phones around with operating systems and different browsers. It's hard to make a working website and continue developing features tested for all devices, that's why I converted the website to a desktop only app. 
 </details>
 
 ---
