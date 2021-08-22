@@ -51,5 +51,5 @@ jobs:
         run: yarn install
 
       # Runs a set of commands using the runners shell
-      - name: Build Windows
+      - name: Build MacOS
         run: yarn electron-pack -m
