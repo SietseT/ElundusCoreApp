@@ -82,19 +82,46 @@ There are many phones around with operating systems and different browsers. It's
 ---
 
 # Contributing
-To download the project source code and start developing:
+
+  <h3>Cloning and installing dependencies </h3>
+
+<summary><b> Windows</b></summary>
 
 1) You can use [Git](https://git-scm.com/downloads) as the CLI but it is not required
+
 2) Install [NodeJS](https://nodejs.org/)
+
 3) Install Yarn using the [Windows Installer](https://classic.yarnpkg.com/latest.msi) or `npm i -g yarn`
+
 4) Install electron globally `npm i -g electron`
-5) Download the project source code `git clone https://SietseT/ElundusCoreApp.git`
+
+5) Clone the project `git clone https://github.com/SietseT/ElundusCoreApp.git`
+
 6) Go in the project folder `cd ElundusCoreApp`
+
 7) And finally, install the project dependencies `npm i`
 
+  <summary><b> Mac</b></summary>
+
+1) Use [Homebrew](https://brew.sh/) to install Git `brew install git` 
+
+2) Use Homebrew to install Node `brew install node`
+
+3) Use npm to globally install Yarn `npm i -g yarn`, Electron `npm i -g electron` and Concurrently `npm i -g concurrently`; If necessary, use the `--forced` or `--legacy-peer-deps` flags.
+
+4) Clone the project `git clone https://github.com/SietseT/ElundusCoreApp.git` 
+
+5) Go in the project folder `cd ElundusCoreApp`
+
+6) Install the project dependencies `npm i` 
+
+  <h3>Running and packaging</h3>
+  
 
 To run the application with hot-reloading (apart from the NodeJS server), run `yarn dev` in the root of the repository.
 
-To compile the app and make an installer run `npm run electron-pack`
+To compile the app and make an installer run `npm run electron-pack -mw`. Use flag `-m` to only package mac or `-w` to only package windows. Using the flag `-mw` will package for both the platforms. 
+
+Check the [Electron CLI documentation](https://www.electron.build/cli.html) for information on building for other platforms.
 
 If you made somes changes and want them added in the main project, submit a pull-request and I'll look at it and decide if it will be added.
