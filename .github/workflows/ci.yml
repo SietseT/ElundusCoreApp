@@ -52,4 +52,4 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: Build Windows
-        run: yarn electron-pack
+        run: yarn electron-pack -w
