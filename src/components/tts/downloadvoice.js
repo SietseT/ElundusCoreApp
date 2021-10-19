@@ -1,26 +1,26 @@
 import React from "react"
-import FileSaver from 'file-saver'
 
 import Card from "react-bootstrap/Card"
+import Tooltip from "react-bootstrap/Tooltip"
+import OverlayTrigger from "react-bootstrap/OverlayTrigger"
 
 class DownloadVoice extends React.Component {
 
-    constructor() {
-        super();
-
-        this.handleDownload = this.handleDownload.bind(this);
-    }
-
-    async handleDownload(event) {
-        event.preventDefault();
-
-        FileSaver.saveAs(this.props.voiceBlobUrl, "speech.oga");
-    }
+    renderTooltip = (props) => (
+        <Tooltip id="button-tooltip" {...props}>
+            A new tab will open in your browser. You can then save the file by right-clicking the soundplayer and choose "Save as.."
+        </Tooltip>
+    );
 
     render() {
         return (
-            <Card.Link href="#" onClick={this.handleDownload}>Download</Card.Link>
-        )
+            <OverlayTrigger
+                placement="bottom"
+                delay={{ show: 100, hide: 200 }}
+                overlay={this.renderTooltip}>
+                <Card.Link className="mt-2 btn btn-outline-primary btn-block" href={this.props.voiceBlobUrl} download rel="noreferrer" target="_blank">Download</Card.Link>
+            </OverlayTrigger>
+        );
     }
 }
 

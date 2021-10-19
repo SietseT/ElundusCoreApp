@@ -1,7 +1,7 @@
 {
   "name": "elundus-core",
   "description": "Use this simple desktop application to simulate StreamElements text-to-speech (TTS) voice messages for Twitch. Hear how a donation for your favorite streamer sounds like!",
-  "version": "0.2.0",
+  "version": "0.5.0",
   "author": {
     "name": "Sietse Trommelen"
   },
@@ -14,13 +14,7 @@
     "productName": "Elundus Core",
     "copyright": "Copyright © 2021 ${author}",
     "win": {
-      "icon": "public/icon.png",
-      "target": "nsis"
-    },
-    "nsis": {
-      "oneClick": false,
-      "perMachine": false,
-      "createDesktopShortcut": true
+      "icon": "public/icon.png"
     },
     "files": [
       "build/**/*",
@@ -40,20 +34,18 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
-    "concurrently": "^6.1.0",
     "cors": "^2.8.5",
     "electron-is-dev": "^2.0.0",
     "electron-log": "^4.3.3",
     "electron-updater": "^4.3.8",
     "express": "^4.17.1",
-    "file-saver": "^2.0.5",
-    "loadable": "^1.0.0",
-    "plyr": "^3.6.4",
     "react": "^17.0.2",
+    "react-audio-player": "^0.17.0",
     "react-bootstrap": "^1.5.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.3",
     "react-scripts": "4.0.3",
+    "react-sound": "^1.2.0",
     "redux": "^4.0.5",
     "wait-on": "^5.3.0"
   },
@@ -64,7 +56,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "preelectron-pack": "yarn build",
-    "electron-pack": "electron-builder -w"
+    "electron-pack": "electron-builder"
   },
   "eslintConfig": {
     "extends": [

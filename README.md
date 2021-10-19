@@ -27,13 +27,18 @@ Elundus Core is a desktop application you can use to simulate/preview text-to-sp
 - Text-to-speech conversion for Amazon Polly voices (same voices are used by StreamElements and StreamLabs)
 - Download converted TTS sound (see FAQ)
 - No more Recaptcha! 🎉
+- Windows and MacOS support
 - Auto-updater, so you'll receive the latest features and fixes automatically
 
 ---
 
 # Installation
-- Go to [releases](https://github.com/SietseT/ElundusCoreApp/releases/latest) and download the setup from the latest release. Only Windows is supported. 
-- Run the setup. If you get a SmartScreen warning, select _More info_ and click _Run anyway_.
+- Go to [releases](https://github.com/SietseT/ElundusCoreApp/releases/latest) and download the setup from the latest release.
+  - On Windows, download the `.exe` file.
+  - On MacOS, download either the `.zip` or `.dmg` file.
+- Run the setup.
+  - Windows: if you get a SmartScreen warning, select _More info_ and click _Run anyway_.
+  - MacOS: Open the `.dmg` by right-clicking on it and selecting `open`, or try any of the installation methods in this [link](https://www.switchingtomac.com/tutorials/osx/how-to-run-unverified-apps-on-macos/).
 - Start Elundus Core using the shortcut created on your desktop or from the start menu.
 
 ---
@@ -45,7 +50,7 @@ The frontend, apart from a few minor tweaks, is exactly the same as the https://
 
 # FAQ
 <details>
-  <summary><b>Why did you make an application instead of continuing to support https://www.elunduscore.com?</b></summary>
+  <summary><b>Why did you make an application instead continuing to develop the website?</b></summary>
   <br />
 
 Elundus Core started out as a project for me to test out some donation messages for xQc, using the [StreamElements](https://streamelements.com/) API. Keep this in mind, this is important for later.
@@ -66,33 +71,55 @@ This setup still works to this day, but having to host more and more proxies as 
 </details>
 
 <details>
-  <summary><b>I can't play the downloaded TTS sound</b></summary>
+  <summary><b>Why is there no phone support?</b></summary>
   <br />
   
-The Streamlabs sound file is in the [Ogg Vorbis](https://en.wikipedia.org/wiki/Vorbis) format. You can download a codec to open it in your favorite music player/editing software. I didn't have much luck myself using the codec, so I used a converter to convert the file to MP3 so you don't have to install a codec. Sadly I can't convert the file in the application itself.
-
-Examples of converters are:
-- [FlicFlac](https://github.com/DannyBen/FlicFlac) (open-source application)
-- [Convertio](https://convertio.co/oga-mp3/) (online)
-- [Cloudconvert](https://cloudconvert.com/oga-to-mp3) (online)
+There are many phones around with operating systems and different browsers. It's hard to make a working website and continue developing features tested for all devices, that's why I converted the website to a desktop only app. 
 </details>
 
 ---
 
 # Contributing
-To download the project source code and start developing:
+
+  <h3>Cloning and installing dependencies </h3>
+
+<summary><b> Windows</b></summary>
 
 1) You can use [Git](https://git-scm.com/downloads) as the CLI but it is not required
+
 2) Install [NodeJS](https://nodejs.org/)
+
 3) Install Yarn using the [Windows Installer](https://classic.yarnpkg.com/latest.msi) or `npm i -g yarn`
+
 4) Install electron globally `npm i -g electron`
-5) Download the project source code `git clone https://SietseT/ElundusCoreApp.git`
+
+5) Clone the project `git clone https://github.com/SietseT/ElundusCoreApp.git`
+
 6) Go in the project folder `cd ElundusCoreApp`
+
 7) And finally, install the project dependencies `npm i`
 
+  <summary><b> Mac</b></summary>
+
+1) Use [Homebrew](https://brew.sh/) to install Git `brew install git` 
+
+2) Use Homebrew to install Node `brew install node`
+
+3) Use npm to globally install Yarn `npm i -g yarn`, Electron `npm i -g electron` and Concurrently `npm i -g concurrently`; If necessary, use the `--forced` or `--legacy-peer-deps` flags.
+
+4) Clone the project `git clone https://github.com/SietseT/ElundusCoreApp.git` 
+
+5) Go in the project folder `cd ElundusCoreApp`
+
+6) Install the project dependencies `npm i` 
+
+  <h3>Running and packaging</h3>
+  
 
 To run the application with hot-reloading (apart from the NodeJS server), run `yarn dev` in the root of the repository.
 
-To compile the app and make an installer run `npm run electron-pack`
+To compile the app and make an installer run `npm run electron-pack -mw`. Use flag `-m` to only package mac or `-w` to only package windows. Using the flag `-mw` will package for both the platforms. 
+
+Check the [Electron CLI documentation](https://www.electron.build/cli.html) for information on building for other platforms.
 
 If you made somes changes and want them added in the main project, submit a pull-request and I'll look at it and decide if it will be added.
