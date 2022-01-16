@@ -5,17 +5,17 @@ name: CI - Windows
 # Controls when the action will run. 
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
-  push:
-    branches:
-      - main
-      - develop
-      - feature/action
-    paths:
-      - 'src/**'
-      - 'public/**'
-      - 'package.json'
-      - 'yarn.lock'
-      - '.github/workflows/ci.yml'
+  # push:
+  #   branches:
+  #     - main
+  #     - develop
+  #     - feature/action
+  #   paths:
+  #     - 'src/**'
+  #     - 'public/**'
+  #     - 'package.json'
+  #     - 'yarn.lock'
+  #     - '.github/workflows/ci.yml'
   pull_request:
     branches: [ main ]
     paths:
