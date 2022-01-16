@@ -55,6 +55,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "audit:fix": "npx yarn-audit-fix",
     "eject": "react-scripts eject",
     "preelectron-pack": "yarn build",
     "electron-pack": "electron-builder"
