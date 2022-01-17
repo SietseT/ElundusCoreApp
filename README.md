@@ -97,7 +97,7 @@ There are many phones around with operating systems and different browsers. It's
 
 6) Go in the project folder `cd ElundusCoreApp`
 
-7) And finally, install the project dependencies `npm i`
+7) And finally, install the project dependencies `yarn install`
 
   <summary><b> Mac</b></summary>
 

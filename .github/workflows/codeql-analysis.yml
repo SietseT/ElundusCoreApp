@@ -12,15 +12,15 @@
 name: "CodeQL"
 
 on:
-  push:
-    branches: [ main ]
-    paths:
-      - 'src/**'
-      - 'public/**'
-      - 'package.json'
-      - 'yarn.lock'
-      - '.github/workflows/codeql-analysis.yml'
-      - '.github/codeql/codeql-config.yml'
+  # push:
+  #   branches: [ main ]
+  #   paths:
+  #     - 'src/**'
+  #     - 'public/**'
+  #     - 'package.json'
+  #     - 'yarn.lock'
+  #     - '.github/workflows/codeql-analysis.yml'
+  #     - '.github/codeql/codeql-config.yml'
   pull_request:
     # The branches below must be a subset of the branches above
     branches: [ main ]
