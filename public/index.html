@@ -1,10 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
+    <style>
+        html {
+            -webkit-user-select: none;
+        }
+
+        .dark-theme {
+            --primary-color: #2e2e2e;
+            --secondary-color: #393939;
+            --text-color: #fff;
+        }
+
+        .light-theme {
+            --primary-color: #ffffff;
+            --secondary-color: #dbdbdb;
+            --text-color: #000000;
+        }
+
+        .mb-3.mb-md-4.input-group:after {
+          width: 0; 
+          height: 10px; 
+          border-left: 6px solid transparent;
+          border-right: 6px solid transparent;
+          border-top: 6px solid var(--text-color);
+          position: absolute;
+          top: 37%;
+          right: 10px;
+          content: "";
+          z-index: 98;
+          background-color: var(--secondary-color);
+          transition: background-color .15s ease-in-out;
+        }
+
+        .mt-4 {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            transition: color .15s ease-in-out,background-color .15s ease-in-out;
+        }
+
+        #text {
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            transition: color .15s ease-in-out,background-color .15s ease-in-out;
+        }
+
+        #text::placeholder {
+            color: var(--text-color);
+            transition: color .15s ease-in-out;
+        }
+
+        #select-voice {
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            transition: color .15s ease-in-out,background-color .15s ease-in-out;
+        }
+
+        #voice {
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            transition: color .15s ease-in-out,background-color .15s ease-in-out;
+        }
+
+        .card {
+            background-color: var(--secondary-color) !important;
+            transition: background-color .15s ease-in-out;
+        }
+
+        #themeSwitch {
+            border: 0em solid;
+            border-radius: .25rem;
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        #themeSwitch:hover {
+            background-color: #0069d9;
+        }
+
+        ::-webkit-scrollbar {
+            width: 7px;
+        }
+
+        ::-webkit-srollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+    </style>
+    <script>
+        window.addEventListener("load", function() {
+            var btn = document.getElementById("themeSwitch");
+            btn.addEventListener("click", function(event) {
+                event.preventDefault();
+
+                document.body.classList.toggle("light-theme");
+                document.body.classList.toggle("dark-theme");  
+            })
+        })
+    </script>
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -14,8 +119,9 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-  </head>
-  <body>
+</head>
+
+<body class="light-theme" style="background-color: var(--primary-color); transition: color .15s ease-in-out,background-color .15s ease-in-out;">
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <!--
@@ -28,5 +134,6 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-  </body>
+</body>
+
 </html>

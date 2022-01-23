@@ -12,6 +12,7 @@ export default function Intro() {
                 <Col>
                     <p>Use this simple tool to simulate StreamElements text-to-speech (TTS) voice messages for Twitch. Hear how a donation for your favorite streamer sounds like!</p>
                     <span className="lead d-none d-sm-block">Chat we forgot <Image src={monkaW} alt="monkaW" /></span>
+                    <button id="themeSwitch">Switch theme</button>
                 </Col>
             </Row>
         </>

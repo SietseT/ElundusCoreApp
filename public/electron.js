@@ -13,11 +13,13 @@ function createWindow() {
     mainWindow = new BrowserWindow({
         width: 1024,
         height: 750,
+        minWidth: 330,
+        minHeight: 190,
         show: false,
         title: "Elundus Core "  + app.getVersion()
     });
 
-    mainWindow.setResizable(false);
+    mainWindow.setResizable(true);
 
     const startURL = isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`;
 
