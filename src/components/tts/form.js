@@ -170,7 +170,7 @@ class TextToSpeechForm extends React.Component {
                     />
                 </Form.Group>
 
-                <InputGroup className="mb-3 mb-md-4">
+                <InputGroup className="mb-3 mb-md-4 input-group-voice">
                     <InputGroup.Prepend>
                         <InputGroup.Text id="select-voice">Voice</InputGroup.Text>
                     </InputGroup.Prepend>

@@ -13,7 +13,7 @@ export default function Layout({ children }) {
             crossOrigin="anonymous"
             />
 
-            <Container className="mt-4" fluid>
+            <Container className="mt-4 container__main" fluid>
                 <main role="main" className="container-fluid">
                     <Container>
                         {children}
