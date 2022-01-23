@@ -18,7 +18,7 @@ on:
       - 'src/**'
       - 'public/**'
       - 'package.json'
-      - 'yarn.lock'
+      - 'package-lock.json'
       - '.github/workflows/codeql-analysis.yml'
       - '.github/codeql/codeql-config.yml'
   pull_request:
@@ -28,7 +28,7 @@ on:
       - 'src/**'
       - 'public/**'
       - 'package.json'
-      - 'yarn.lock'
+      - 'package-lock.json'
       - '.github/workflows/codeql-analysis.yml'
       - '.github/codeql/codeql-config.yml'
 
@@ -59,10 +59,10 @@ jobs:
         # queries: ./path/to/local/query, your-org/your-repo/queries@main
 
     - name: Install dependencies
-      run: yarn install
+      run: npm install
 
     - name: Build
-      run: yarn build
+      run: npm run build
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1

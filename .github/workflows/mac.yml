@@ -14,7 +14,7 @@ on:
       - 'src/**'
       - 'public/**'
       - 'package.json'
-      - 'yarn.lock'
+      - 'package-lock.json'
       - '.github/workflows/mac.yml'
   pull_request:
     branches: [ main ]
@@ -22,7 +22,7 @@ on:
       - 'src/**'
       - 'public/**'
       - 'package.json'
-      - 'yarn.lock'
+      - 'package-lock.json'
       - '.github/workflows/mac.yml'
 
   # Allows you to run this workflow manually from the Actions tab
@@ -48,8 +48,8 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Install dependencies
-        run: yarn install
+        run: npm install
 
       # Runs a set of commands using the runners shell
       - name: Build MacOS
-        run: yarn electron-pack -m
+        run: npm run electron-pack -- -m
