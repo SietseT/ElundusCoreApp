@@ -116,7 +116,7 @@ There are many phones around with operating systems and different browsers. It's
 
 To run the application with hot-reloading (apart from the NodeJS server), run `npm run dev` in the root of the repository.
 
-To compile the app and make an installer run `npm run electron-pack -mw`. Use flag `-m` to only package mac or `-w` to only package windows. Using the flag `-mw` will package for both the platforms. 
+To compile the app and make an installer run `npm run electron-pack -- -mw`. Use flag `-m` to only package mac or `-w` to only package windows. Using the flag `-mw` will package for both the platforms. 
 
 Check the [Electron CLI documentation](https://www.electron.build/cli.html) for information on building for other platforms.
 
