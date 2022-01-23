@@ -33,6 +33,6 @@ export default function Intro() {
     }, [darkMode]);
 
     return <Button variant={darkMode ? "light" : "dark"} className="btn-darkmode" onClick={() => setDarkMode(!darkMode)}>
-        <img src={darkMode ? lightModeSvg : darkModeSvg} />
+        <img src={darkMode ? lightModeSvg : darkModeSvg} alt="Theme toggle" />
     </Button>
 }
