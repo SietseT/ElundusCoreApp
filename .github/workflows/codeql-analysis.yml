@@ -12,7 +12,7 @@
 name: "CodeQL"
 
 on:
-  # push:
+  push:
     branches: [ main ]
     paths:
       - 'src/**'
