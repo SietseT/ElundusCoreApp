@@ -5,24 +5,24 @@ name: CI - MacOS
 # Controls when the action will run. 
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
-  # push:
-  #   branches:
-  #     - main
-  #     - develop
-  #     - feature/action
-  #   paths:
-  #     - 'src/**'
-  #     - 'public/**'
-  #     - 'package.json'
-  #     - 'yarn.lock'
-  #     - '.github/workflows/mac.yml'
+  push:
+    branches:
+      - main
+      - develop
+      - feature/action
+    paths:
+      - 'src/**'
+      - 'public/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/mac.yml'
   pull_request:
     branches: [ main ]
     paths:
       - 'src/**'
       - 'public/**'
       - 'package.json'
-      - 'yarn.lock'
+      - 'package-lock.json'
       - '.github/workflows/mac.yml'
 
   # Allows you to run this workflow manually from the Actions tab
@@ -48,8 +48,8 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Install dependencies
-        run: yarn install
+        run: npm install
 
       # Runs a set of commands using the runners shell
       - name: Build MacOS
-        run: yarn electron-pack -m
+        run: npm run electron-pack -- -m

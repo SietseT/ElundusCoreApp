@@ -5,6 +5,8 @@ import Intro from "./components/intro"
 import Footer from "./components/footer"
 import TextToSpeech from "./components/tts/texttospeech"
 
+import "./styles/theme.css";
+
 export default function App() {   
 
     return (

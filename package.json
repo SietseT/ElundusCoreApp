@@ -1,7 +1,7 @@
 {
   "name": "elundus-core",
   "description": "Use this simple desktop application to simulate StreamElements text-to-speech (TTS) voice messages for Twitch. Hear how a donation for your favorite streamer sounds like!",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "author": {
     "name": "Sietse Trommelen"
   },
@@ -52,16 +52,17 @@
     "wait-on": "^5.3.0"
   },
   "resolutions": {
-    "mini-css-extract-plugin": "2.4.5"
+    "mini-css-extract-plugin": "2.4.5",
+    "follow-redirects": ">=1.14.7"
   },
   "scripts": {
-    "dev": "concurrently \"yarn start\" \"wait-on http://localhost:3000 && electron .\"",
+    "dev": "concurrently \"npm run-script start\" \"wait-on http://localhost:3000 && electron .\"",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "audit:fix": "npx yarn-audit-fix",
     "eject": "react-scripts eject",
-    "preelectron-pack": "yarn build",
+    "preelectron-pack": "npm run-script build",
     "electron-pack": "electron-builder"
   },
   "eslintConfig": {
