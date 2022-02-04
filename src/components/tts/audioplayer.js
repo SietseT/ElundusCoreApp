@@ -56,7 +56,7 @@ class Audioplayer extends React.Component {
             currentDurationString: this.getTimeCodeFromNum(this.audio.currentTime),
             progressBarWidth: progressBarWidth,
             position: progressBarWidth,
-            playing: this.audio.currentTime != this.audio.duration
+            playing: this.audio.currentTime !== this.audio.duration
         });
 
         
