@@ -1,5 +1,5 @@
 import React from "react"
-import Sound from 'react-sound'
+import ReactPlayer from "react-player";
 
 import "./../../styles/soundplayer.css";
 
@@ -9,7 +9,7 @@ class Audioplayer extends React.Component {
         super();
 
         this.state = {
-            playStatus: Sound.status.PLAYING,
+            playStatus: true,
             position: 0,
             currentDurationString: "0:00",
             maxDurationStringString: "0:00",
@@ -18,8 +18,7 @@ class Audioplayer extends React.Component {
 
         this.onMouseMove = this.onMouseMove.bind(this);
         this.onMouseClick = this.onMouseClick.bind(this);
-        this.onPlaying = this.onPlaying.bind(this);
-        this.onFinishedPlaying = this.onFinishedPlaying.bind(this);
+        this.onProgress = this.onProgress.bind(this);
         this.togglePlayClick = this.togglePlayClick.bind(this);
 
         this.progressBarRef = React.createRef();
@@ -31,42 +30,40 @@ class Audioplayer extends React.Component {
         // Reset playStatus and position for when a new sound is loaded. 
         if(prevProps.src !== this.props.src) {
             this.setState({
-                playStatus: Sound.status.PLAYING,
+                playStatus: true,
                 position: 0
             });
         }
      }
 
-    onPlaying(event) {
+    onProgress(event) {
+
+        console.log(event);
 
         // Calculate width of progressbar in percentage
-        let progressBarWidth = event.position / event.duration * 100;
+        let progressBarWidth = event.playedSeconds / event.loadedSeconds * 100;
 
         // If playStatus is not playing, this may trigger too many state updates
-        if(this.state.playStatus !== Sound.status.PLAYING) {
+        if(this.state.playStatus !== true) {
             return;
         }
-        this.duration = event.duration;
+
+        this.loadedSeconds = event.loadedSeconds;
 
         this.setState({
-            currentDurationString: this.getTimeCodeFromNum(event.position),
-            maxDurationString: this.getTimeCodeFromNum(event.duration),
+            currentDurationString: this.getTimeCodeFromNum(event.playedSeconds),
+            maxDurationString: this.getTimeCodeFromNum(event.loadedSeconds),
             progressBarWidth: progressBarWidth,
-            position: event.position
-        });
-    }
-
-    onFinishedPlaying() {
-        this.setState({
-            playStatus: Sound.status.STOPPED
+            position: progressBarWidth,
+            playStatus: event.playedSeconds != event.loadedSeconds
         });
     }
 
     togglePlayClick() {
-        let soundState = Sound.status.PLAYING;
-        if(this.state.playStatus === Sound.status.PLAYING) {
+        let soundState = true;
+        if(this.state.playStatus === true) {
             this.setState({
-                playStatus: Sound.status.PAUSE
+                playStatus: false
             });
             return;
         }
@@ -94,7 +91,7 @@ class Audioplayer extends React.Component {
             position: position
         }, () => {
             this.setState({
-                playStatus: Sound.status.PLAYING
+                playStatus: true
             });
         });
     }
@@ -106,7 +103,7 @@ class Audioplayer extends React.Component {
 
     //turn 128 seconds into 2:08
     getTimeCodeFromNum(num) {
-        let seconds = Math.round(parseInt(num) / 1000);
+        let seconds = Math.round(num);
         let minutes = parseInt(seconds / 60);
         seconds -= minutes * 60;
     
@@ -116,13 +113,13 @@ class Audioplayer extends React.Component {
     render() {
         return (
             <div className="audio-player">                
-            <Sound url={this.props.src} playStatus={this.state.playStatus} playFromPosition={this.state.position} onPlaying={this.onPlaying} onFinishedPlaying={this.onFinishedPlaying}  />
+            <ReactPlayer url={this.props.src} playing={this.state.playStatus} width='100%' height='100%' onProgress={this.onProgress} />
                 <div className="timeline" ref={this.progressBarRef} onMouseMove={this.onMouseMove} onClick={this.onMouseClick} >
                     <div className="progress" style={{"width": this.state.progressBarWidth + '%'}}></div>
                 </div>
                 <div className="controls">
                     <div className="play-container">
-                        <div className={`toggle-play ${this.state.playStatus === Sound.status.PLAYING ? "pause" : "play"}`} onClick={this.togglePlayClick} />
+                        <div className={`toggle-play ${this.state.playStatus === true ? "pause" : "play"}`} onClick={this.togglePlayClick} />
                     </div>
                     <div className="time">
                         <div className="current">{this.state.currentDurationString}</div>
