@@ -10,16 +10,12 @@ class Audioplayer extends React.Component {
         this.state = {
             playing: false,
             currentDurationString: "-:--",
-            durationStringString: "-:--",
             progressBarWidth: 0,
         };
 
-        this.onMouseMove = this.onMouseMove.bind(this);
-        this.onMouseClick = this.onMouseClick.bind(this);
         this.onProgress = this.onProgress.bind(this);
         this.togglePlayClick = this.togglePlayClick.bind(this);
 
-        this.progressBarRef = React.createRef();
         this.progressBarPosition = 0;
         this.duration = 0;
         this.audio = new Audio();
@@ -45,16 +41,6 @@ class Audioplayer extends React.Component {
         this.audio.addEventListener('playing', () => this.setState({ playing: true }));
         this.audio.addEventListener('ended', () => this.setState({ playing: false }));        
         this.audio.addEventListener('timeupdate', event => this.onProgress(event));
-        this.audio.addEventListener('loadedmetadata', () => this.setDuration());
-     }
-
-     setDuration() {        
-        let durationString = this.getTimeCodeFromNum(this.audio.duration);
-        if(this.state.durationString != durationString) {
-            this.setState({
-                durationString: durationString
-            });
-        }
      }
 
     onProgress() {
@@ -99,20 +85,6 @@ class Audioplayer extends React.Component {
         this.audio.pause();
     }
 
-    onMouseClick() {
-        // Calculate position to seek to
-        let position = this.progressBarPosition / 100;
-        console.log('Position: ' + position);
-        console.log('currentTime: ' + Math.round(this.audio.duration * position));
-
-        this.audio.currentTime = Math.round(this.audio.duration * position);    
-    }
-
-    onMouseMove(event) {
-        // Needed to calculate position when clicking on seekbar
-        this.progressBarPosition = (event.clientX - this.progressBarRef.current.getBoundingClientRect().left) / event.target.offsetWidth * 100;
-    }
-
     //turn 128 seconds into 2:08
     getTimeCodeFromNum(num) {
         let seconds = Math.round(num);
@@ -135,8 +107,6 @@ class Audioplayer extends React.Component {
                     </div>
                     <div className="time">
                         <div className="current">{this.state.currentDurationString}</div>
-                        <div className="divider">/</div>
-                        <div className="length">{this.state.durationString}</div>
                     </div>                    
                 </div>
             </div>
