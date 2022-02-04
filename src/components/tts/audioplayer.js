@@ -1,5 +1,4 @@
 import React from "react"
-import ReactPlayer from "react-player";
 
 import "./../../styles/soundplayer.css";
 
@@ -9,9 +8,9 @@ class Audioplayer extends React.Component {
         super();
 
         this.state = {
-            playing: true,
-            currentDurationString: "0:00",
-            maxDurationStringString: "0:00",
+            playing: false,
+            currentDurationString: "-:--",
+            durationStringString: "-:--",
             progressBarWidth: 0,
         };
 
@@ -23,12 +22,18 @@ class Audioplayer extends React.Component {
         this.progressBarRef = React.createRef();
         this.progressBarPosition = 0;
         this.duration = 0;
+        this.audio = new Audio();
     }
+
+    
 
     componentDidUpdate(prevProps) {
         // Reset playing for when a new sound is loaded. 
         if(prevProps.src !== this.props.src) {
-            this.player.seekTo(0);
+
+            this.audio.src = this.props.src; 
+            this.audio.position = 0;
+            this.audio.play();
 
             this.setState({
                 playing: true
@@ -36,51 +41,71 @@ class Audioplayer extends React.Component {
         }
      }
 
-    onProgress(event) {
+     componentDidMount() {
+        this.audio.addEventListener('playing', () => this.setState({ playing: true }));
+        this.audio.addEventListener('ended', () => this.setState({ playing: false }));        
+        this.audio.addEventListener('timeupdate', event => this.onProgress(event));
+        this.audio.addEventListener('loadedmetadata', () => this.setDuration());
+     }
+
+     setDuration() {        
+        let durationString = this.getTimeCodeFromNum(this.audio.duration);
+        if(this.state.durationString != durationString) {
+            this.setState({
+                durationString: durationString
+            });
+        }
+     }
+
+    onProgress() {
         // Calculate width of progressbar in percentage
-        let progressBarWidth = event.playedSeconds / event.loadedSeconds * 100;
+        let progressBarWidth = this.audio.currentTime / this.audio.duration * 100;
 
         // If not playing, this may trigger too many state updates
         if(this.state.playing !== true) {
             return;
         }
 
-        this.loadedSeconds = event.loadedSeconds;
-
-        
-        let maxDurationString = this.getTimeCodeFromNum(this.player.getDuration());
-
         this.setState({
-            currentDurationString: this.getTimeCodeFromNum(event.playedSeconds),
+            currentDurationString: this.getTimeCodeFromNum(this.audio.currentTime),
             progressBarWidth: progressBarWidth,
             position: progressBarWidth,
-            playing: event.playedSeconds != event.loadedSeconds
+            playing: this.audio.currentTime != this.audio.duration
         });
 
-        if(this.state.maxDurationString != maxDurationString) {
-            this.setState({
-                maxDurationString: this.getTimeCodeFromNum(this.player.getDuration())
-            });
-        }
+        
     }
 
     togglePlayClick() {
+        if(!this.state.playing) {
+            this.play();
+        }
+        else {
+            this.pause();
+        }
+    }
+
+    play() {
         this.setState({
-            playing: !this.state.playing
+            playing: true
         });
+        this.audio.play();
+    }
+
+    pause() {
+        this.setState({
+            playing: false
+        });
+        this.audio.pause();
     }
 
     onMouseClick() {
         // Calculate position to seek to
         let position = this.progressBarPosition / 100;
-        this.player.seekTo(position, "fraction");
+        console.log('Position: ' + position);
+        console.log('currentTime: ' + Math.round(this.audio.duration * position));
 
-        if(!this.state.playing) {
-            this.setState({
-                playing: true
-            });
-        }
-        
+        this.audio.currentTime = Math.round(this.audio.duration * position);    
     }
 
     onMouseMove(event) {
@@ -97,16 +122,10 @@ class Audioplayer extends React.Component {
         return `${minutes}:${String(seconds % 60).padStart(2, 0)}`;
     }
 
-    ref = player => {
-        this.player = player
-      }
-
     render() {
+
         return (
-            <div className="audio-player">                
-            <ReactPlayer url={this.props.src} ref={this.ref} playing={this.state.playing} width='100%' height='100%' 
-            onProgress={this.onProgress} progressInterval="500"
-            />
+            <div className="audio-player">
                 <div className="timeline" ref={this.progressBarRef} onMouseMove={this.onMouseMove} onClick={this.onMouseClick} >
                     <div className="progress" style={{"width": this.state.progressBarWidth + '%'}}></div>
                 </div>
@@ -117,7 +136,7 @@ class Audioplayer extends React.Component {
                     <div className="time">
                         <div className="current">{this.state.currentDurationString}</div>
                         <div className="divider">/</div>
-                        <div className="length">{this.state.maxDurationString}</div>
+                        <div className="length">{this.state.durationString}</div>
                     </div>                    
                 </div>
             </div>

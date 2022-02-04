@@ -17,8 +17,7 @@ class SoundPlayer extends React.Component {
             <Card>
                 <Card.Header>Result</Card.Header>
                 <Card.Body>
-                <Audioplayer src={this.props.voiceBlobUrl} />
-                    {/* <ShareVoice /> */}
+                    <Audioplayer src={this.props.voiceBlobUrl} />
                     <DownloadVoice voiceBlobUrl={this.props.voiceBlobUrl} />
                 </Card.Body>
             </Card>
