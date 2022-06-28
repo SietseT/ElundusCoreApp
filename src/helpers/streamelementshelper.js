@@ -2,7 +2,7 @@ export default class StreamElementsHelper {
 
     static GetStreamElementsUrl(voice, text) {
 
-        var baseUrl = 'http://localhost:5000';
+        var baseUrl = 'http://localhost:5123';
 
         return baseUrl + '/speech/' + voice + "/" + encodeURIComponent(text.trim());
     }
