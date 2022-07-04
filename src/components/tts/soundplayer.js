@@ -9,10 +9,6 @@ import DownloadVoice from "./downloadvoice"
 
 class SoundPlayer extends React.Component {
     render() {
-        if (this.props.voiceBlobUrl === '') {
-            return null;
-        }
-
         return (
             <Card>
                 <Card.Header>Result</Card.Header>

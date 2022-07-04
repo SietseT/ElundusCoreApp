@@ -1,7 +1,7 @@
 {
   "name": "elundus-core",
   "description": "Use this simple desktop application to simulate StreamElements text-to-speech (TTS) voice messages for Twitch. Hear how a donation for your favorite streamer sounds like!",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "author": {
     "name": "Sietse Trommelen"
   },
