@@ -4,7 +4,7 @@
 [![GitHub downloads](https://img.shields.io/github/downloads/SietseT/ElundusCoreApp/total?style=flat-square)]()
 [![GitHub issues](https://img.shields.io/github/issues/SietseT/ElundusCoreApp?style=flat-square)]()
 
-Elundus Core is a desktop application you can use to simulate/preview text-to-speech (TTS) voice messages for Twitch. It's a port of the website https://www.elunduscore.com that I've initially created for the same purpose.
+Elundus Core is a desktop application you can use to simulate/preview text-to-speech (TTS) voice messages for Twitch. It's a port of the website that I've initially created for the same purpose.
 
 <details>
   <summary><b>Screenshot</b></summary>
@@ -44,7 +44,7 @@ Elundus Core is a desktop application you can use to simulate/preview text-to-sp
 ---
 
 # How it works
-The frontend, apart from a few minor tweaks, is exactly the same as the https://www.elunduscore.com website that I've made. But instead of calling an external API, the application comes bundled with it's own API which in turn calls the [Streamlabs](https://streamlabs.com) API to convert the text-to-speech.
+The frontend, apart from a few minor tweaks, is exactly the same as the website that I've made. But instead of calling an external API, the application comes bundled with it's own API which in turn calls the [Streamlabs](https://streamlabs.com) API to convert the text-to-speech.
 
 ---
 
