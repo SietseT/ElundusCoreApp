@@ -87,7 +87,7 @@ There are many phones around with operating systems and different browsers. It's
 
 1) You can use [Git](https://git-scm.com/downloads) as the CLI but it is not required
 
-2) Install [NodeJS](https://nodejs.org/)
+2) Install [NodeJS 16](https://nodejs.org/en/blog/release/v16.16.0)
 
 4) Install electron globally `npm i -g electron`
 
