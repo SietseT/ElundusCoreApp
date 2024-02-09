@@ -1,32 +1,28 @@
-export default class StreamElementsHelper {
-    static GetStreamElementsUrl(voice, text) {
-        return `https://api.streamelements.com/kappa/v2/speech?voice=${voice}&text=${encodeURIComponent(text.trim())}`;
-    }
-
+export default class StreamLabsHelper {
     static GetTtsBlob(voice, text) {
 
         if (text === "" || voice === "") {
-            return { blobUrl: null, blob: null, error: { error: 'Oops..', message: 'You need to fill in some text.' } };
+            return { blobUrl: null, error: { error: 'Oops..', message: 'You need to fill in some text.' } };
         }
 
         //Replace invalid characters
         text = text.replaceAll("&", "%26");
         text = text.replaceAll("#", "%23");
 
-        let url = this.GetStreamElementsUrl(voice, text);
+        let url = this.GetInternalApiUrl(voice, text);
 
         return fetch(url)
             .then(async (result) => {
                 if (!result.ok) { throw result }
                 
-                return result.blob();
+                return result.json();
             })
-            .then(data => {
-                if (data == null) {
+            .then(json => {
+                if (json == null) {
                     return { blobUrl: null, blob: null, error: this.GetApiErrorMessage() };
                 }
 
-                return { blobUrl: url, blob: data, error: null };
+                return { blobUrl: json.speakUrl, blob: null, error: null };
             })
             .catch((error) => {                
 

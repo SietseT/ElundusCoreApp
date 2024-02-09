@@ -87,7 +87,7 @@ class TextToSpeechForm extends React.Component {
         var result = await StreamElementsHelper.GetTtsBlob(voice, text);
         this.setLoading(false);
 
-        if (result.blobUrl != null) {
+        if (result.blobUrl != null || result.blob != null) {
             this.props.dispatch({ type: 'SET_VOICEBLOBURL', data: result.blobUrl });
             this.props.dispatch({ type: 'SET_VOICEBLOB', data: result.blob });
             this.props.dispatch({ type: 'SET_VOICE_TEXT', data: { voice: voice, text: text } });
