@@ -20,6 +20,7 @@ routes.get('/speech/:voice/:text', function(request, res) {
     path: '/polly/speak',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
+      'Referer': 'https://streamlabs.com/'
     }
   };
 

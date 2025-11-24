@@ -1,6 +1,6 @@
 import React from "react"
 import { connect } from "react-redux"
-import StreamElementsHelper from "../../helpers/streamelementshelper"
+import StreamLabsHelper from "../../helpers/streamlabshelper"
 
 import Form from "react-bootstrap/Form"
 import InputGroup from "react-bootstrap/InputGroup"
@@ -84,7 +84,7 @@ class TextToSpeechForm extends React.Component {
         let text = this.state.text;
         let voice = this.state.voice;
 
-        var result = await StreamElementsHelper.GetTtsBlob(voice, text);
+        var result = await StreamLabsHelper.GetTtsBlob(voice, text);
         this.setLoading(false);
 
         if (result.blobUrl != null || result.blob != null) {

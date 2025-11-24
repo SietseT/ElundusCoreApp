@@ -1,4 +1,8 @@
 export default class StreamLabsHelper {
+    static GetInternalApiUrl(voice, text) {
+        return 'http://localhost:5123/speech/' + voice + '/' + text;
+    }
+
     static GetTtsBlob(voice, text) {
 
         if (text === "" || voice === "") {
