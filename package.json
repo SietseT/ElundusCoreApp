@@ -69,7 +69,13 @@
       "icon": "public/icon.png"
     },
     "mac": {
-      "icon": "public/icon.icns"
+      "icon": "public/icon.icns",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": ["universal"]
+        }
+      ]
     },
     "files": [
       "build/**/*",
