@@ -1,5 +1,6 @@
-# Elundus Core (desktop) 
-[![GitHub build](https://img.shields.io/github/workflow/status/SietseT/ElundusCoreApp/CI%20-%20Windows/main?style=flat-square)]()
+# Elundus Core (desktop)
+
+[![GitHub build](https://img.shields.io/github/actions/workflow/status/SietseT/ElundusCoreApp/ci.yml?branch=main&style=flat-square)]())
 [![GitHub version](https://img.shields.io/github/v/release/SietseT/ElundusCoreApp?style=flat-square)]()
 [![GitHub downloads](https://img.shields.io/github/downloads/SietseT/ElundusCoreApp/total?style=flat-square)]()
 [![GitHub issues](https://img.shields.io/github/issues/SietseT/ElundusCoreApp?style=flat-square)]()
@@ -24,6 +25,7 @@ Elundus Core is a desktop application you can use to simulate/preview text-to-sp
 ---
 
 # Features
+
 - Text-to-speech conversion for Amazon Polly voices (same voices are used by StreamElements and StreamLabs)
 - Download converted TTS sound (see FAQ)
 - No more Recaptcha! 🎉
@@ -33,9 +35,10 @@ Elundus Core is a desktop application you can use to simulate/preview text-to-sp
 ---
 
 # Installation
+
 - Go to [releases](https://github.com/SietseT/ElundusCoreApp/releases/latest) and download the setup from the latest release.
   - On Windows, download the `.exe` file.
-  - On MacOS, download either the `.zip` or `.dmg` file.
+  - On MacOS, download the `.dmg` file (universal — works on both Intel and Apple Silicon).
 - Run the setup.
   - Windows: if you get a SmartScreen warning, select _More info_ and click _Run anyway_.
   - MacOS: Open the `.dmg` by right-clicking on it and selecting `open`, or try any of the installation methods in this [link](https://www.switchingtomac.com/tutorials/osx/how-to-run-unverified-apps-on-macos/).
@@ -44,11 +47,13 @@ Elundus Core is a desktop application you can use to simulate/preview text-to-sp
 ---
 
 # How it works
+
 The frontend, apart from a few minor tweaks, is exactly the same as the website that I've made. But instead of calling an external API, the application comes bundled with it's own API which in turn calls the [Streamlabs](https://streamlabs.com) API to convert the text-to-speech.
 
 ---
 
 # FAQ
+
 <details>
   <summary><b>Why did you make an application instead continuing to develop the website?</b></summary>
   <br />
@@ -59,7 +64,7 @@ I decided make it public and host it as a website, mainly because of the low cos
 
 After few months of having around 10-15 users a day, the website was featured in a Reddit post. I think it was on [r/LiveStreamFails](https://www.reddit.com/r/LivestreamFails/) or [r/xqcow](https://www.reddit.com/r/xqcow/), but I'm not sure. After that I saw that the amount of visitors was climbing rapidly and with that, the site ranked higher and higher in Google.
 
-Fast-forward to July 17th, 2021. Apparently the website caused so much traffic for StreamElements that they decided to implement security measures. They added a captcha to their API, so it was impossible for the website to convert the TTS messages. I've thought of using a service that solves captchas (paid), but decided it was too expensive. 
+Fast-forward to July 17th, 2021. Apparently the website caused so much traffic for StreamElements that they decided to implement security measures. They added a captcha to their API, so it was impossible for the website to convert the TTS messages. I've thought of using a service that solves captchas (paid), but decided it was too expensive.
 
 I've tinkered around with this for a few days until I stumbled upon the [Streamlabs](https://streamlabs.com) API. It does basically the same, but it couldn't be called directly from a website, there had to be a server inbetween. _For the developers around: they protected the API with CORS._ So I had to host a simple webserver/API that the website could call and everything was fine. Atleast I thought it was.
 
@@ -68,6 +73,7 @@ Apparently the Streamlabs API had a rate limit. Meaning you could only do 20 cal
 I've then decided this had to be fixed and created a proxy server system in order to prevent rate-limiting to occur. The website still calls 1 API, but the API then calls one of the proxy servers (and kept track of which one was rate-limited and which wasn't), and the proxy server in turn calls the Streamlabs API to convert the message.
 
 This setup still works to this day, but having to host more and more proxies as the popularity increases is not a working solution for me. I've had the idea for a few months now, but finally made a desktop application for Elundus Core which comes with it's own bundled API which calls Streamlabs, which means I don't have to host an API or proxyservers anymore.
+
 </details>
 
 <details>
@@ -85,38 +91,34 @@ There are many phones around with operating systems and different browsers. It's
 
 <summary><b> Windows</b></summary>
 
-1) You can use [Git](https://git-scm.com/downloads) as the CLI but it is not required
+1. You can use [Git](https://git-scm.com/downloads) as the CLI but it is not required
 
-2) Install [NodeJS 16](https://nodejs.org/en/blog/release/v16.16.0)
+2. Install [NodeJS 22](https://nodejs.org/en/download)
 
-4) Install electron globally `npm i -g electron`
+3. Clone the project `git clone https://github.com/SietseT/ElundusCoreApp.git`
 
-5) Clone the project `git clone https://github.com/SietseT/ElundusCoreApp.git`
+4. Go in the project folder `cd ElundusCoreApp`
 
-6) Go in the project folder `cd ElundusCoreApp`
-
-7) And finally, install the project dependencies `npm install`
+5. And finally, install the project dependencies `npm install`
 
   <summary><b> Mac</b></summary>
 
-1) Use [Homebrew](https://brew.sh/) to install Git `brew install git` 
+1. Use [Homebrew](https://brew.sh/) to install Git `brew install git`
 
-2) Use Homebrew to install Node `brew install node`
+2. Use Homebrew to install Node `brew install node@22`
 
-3) Use npm to globally install Electron `npm i -g electron` and Concurrently `npm i -g concurrently`; If necessary, use the `--forced` or `--legacy-peer-deps` flags.
+3. Clone the project `git clone https://github.com/SietseT/ElundusCoreApp.git`
 
-4) Clone the project `git clone https://github.com/SietseT/ElundusCoreApp.git` 
+4. Go in the project folder `cd ElundusCoreApp`
 
-5) Go in the project folder `cd ElundusCoreApp`
-
-6) Install the project dependencies `npm i` 
+5. Install the project dependencies `npm i`
 
   <h3>Running and packaging</h3>
-  
+
 
 To run the application with hot-reloading (apart from the NodeJS server), run `npm run dev` in the root of the repository.
 
-To compile the app and make an installer run `npm run electron-pack -- -mw`. Use flag `-m` to only package mac or `-w` to only package windows. Using the flag `-mw` will package for both the platforms. 
+To compile the app and make an installer run `npm run electron-pack -- -w` for Windows or `npm run electron-pack -- -m` for macOS (produces a universal `.dmg` that runs on both Intel and Apple Silicon). Use `npm run electron-pack -- -mw` to package for both platforms at once.
 
 Check the [Electron CLI documentation](https://www.electron.build/cli.html) for information on building for other platforms.
 
