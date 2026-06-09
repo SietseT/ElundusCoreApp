@@ -73,7 +73,14 @@ html {
 body {
   background-color: hsl(var(--background));
   color: hsl(var(--foreground));
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
+}
+
+html.is-theme-transitioning *,
+html.is-theme-transitioning *::before,
+html.is-theme-transitioning *::after {
+  transition-property: color, background-color, border-color, fill, stroke;
+  transition-duration: 0.15s;
+  transition-timing-function: ease-in-out;
 }
 
 /* ── Scrollbar ───────────────────────────────────────────────────────────── */

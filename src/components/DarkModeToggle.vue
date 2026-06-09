@@ -17,11 +17,13 @@ watch(darkMode, (val) => {
 
 function applyTheme(dark) {
   const html = document.documentElement
+  html.classList.add('is-theme-transitioning')
   if (dark) {
     html.classList.add('dark')
   } else {
     html.classList.remove('dark')
   }
+  setTimeout(() => html.classList.remove('is-theme-transitioning'), 150)
 }
 </script>
 
