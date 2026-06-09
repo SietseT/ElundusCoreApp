@@ -13,24 +13,9 @@ name: "CodeQL"
 
 on:
   push:
-    branches: [ main ]
-    paths:
-      - 'src/**'
-      - 'public/**'
-      - 'package.json'
-      - 'package-lock.json'
-      - '.github/workflows/codeql-analysis.yml'
-      - '.github/codeql/codeql-config.yml'
+    branches: [main]
   pull_request:
-    # The branches below must be a subset of the branches above
-    branches: [ main ]
-    paths:
-      - 'src/**'
-      - 'public/**'
-      - 'package.json'
-      - 'package-lock.json'
-      - '.github/workflows/codeql-analysis.yml'
-      - '.github/codeql/codeql-config.yml'
+    branches: [main]
 
 jobs:
   analyze:
@@ -40,29 +25,29 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: [ 'javascript' ]
+        language: ["javascript"]
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    # Initializes the CodeQL tools for scanning.
-    - name: Initialize CodeQL
-      uses: github/codeql-action/init@v1
-      with:
-        languages: ${{ matrix.language }}
-        config-file: ./.github/codeql/codeql-config.yml
+      # Initializes the CodeQL tools for scanning.
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v4
+        with:
+          languages: ${{ matrix.language }}
+          config-file: ./.github/codeql/codeql-config.yml
 
-        # If you wish to specify custom queries, you can do so here or in a config file.
-        # By default, queries listed here will override any specified in a config file.
-        # Prefix the list here with "+" to use these queries and those in the config file.
-        # queries: ./path/to/local/query, your-org/your-repo/queries@main
+          # If you wish to specify custom queries, you can do so here or in a config file.
+          # By default, queries listed here will override any specified in a config file.
+          # Prefix the list here with "+" to use these queries and those in the config file.
+          # queries: ./path/to/local/query, your-org/your-repo/queries@main
 
-    - name: Install dependencies
-      run: npm install
+      - name: Install dependencies
+        run: npm install
 
-    - name: Build
-      run: npm run build
+      - name: Build
+        run: npm run build
 
-    - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v1
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v4
