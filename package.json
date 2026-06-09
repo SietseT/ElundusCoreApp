@@ -1,7 +1,7 @@
 {
   "name": "elundus-core",
   "description": "Use this simple desktop application to simulate StreamElements text-to-speech (TTS) voice messages for Twitch. Hear how a donation for your favorite streamer sounds like!",
-  "version": "0.7.1",
+  "version": "0.8.0",
   "author": {
     "name": "Sietse Trommelen"
   },
@@ -9,21 +9,6 @@
   "private": true,
   "homepage": "./",
   "main": "./public/electron.js",
-  "build": {
-    "appId": "sito.elunduscore",
-    "productName": "Elundus Core",
-    "copyright": "Copyright © 2025 ${author}",
-    "win": {
-      "icon": "public/icon.png"
-    },
-    "files": [
-      "build/**/*",
-      "node_modules/**/*"
-    ],
-    "directories": {
-      "buildResources": "assets"
-    }
-  },
   "publish": {
     "provider": "github",
     "repo": "ElundusCoreApp",
@@ -32,9 +17,18 @@
     "protocol": "https",
     "releaseType": "draft"
   },
+  "scripts": {
+    "dev": "concurrently \"npm run-script start\" \"wait-on http://localhost:3000 && electron .\"",
+    "start": "vite",
+    "build": "vite build",
+    "test": "vitest",
+    "audit:fix": "npx yarn-audit-fix",
+    "preelectron-pack": "npm run-script build",
+    "electron-pack": "electron-builder"
+  },
   "dependencies": {
     "ansi-regex": "^6.0.1",
-    "axios": "^0.21.2",
+    "axios": "^1.17.0",
     "concurrently": "^7.0.0",
     "cors": "^2.8.5",
     "electron-is-dev": "^2.0.0",
@@ -45,29 +39,8 @@
     "react-bootstrap": "^1.5.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.3",
-    "react-scripts": "5.0.0",
     "redux": "^4.0.5",
-    "wait-on": "^5.3.0"
-  },
-  "resolutions": {
-    "mini-css-extract-plugin": "2.4.5",
-    "follow-redirects": ">=1.14.7"
-  },
-  "scripts": {
-    "dev": "concurrently \"npm run-script start\" \"wait-on http://localhost:3000 && electron .\"",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "audit:fix": "npx yarn-audit-fix",
-    "eject": "react-scripts eject",
-    "preelectron-pack": "npm run-script build",
-    "electron-pack": "electron-builder"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "wait-on": "^9.0.10"
   },
   "browserslist": {
     "production": [
@@ -82,8 +55,35 @@
     ]
   },
   "devDependencies": {
-    "electron": "^27.0.2",
-    "electron-builder": "^24.6.4",
-    "prop-types": "^15.7.2"
+    "@vitejs/plugin-react": "^6.0.2",
+    "electron": "^42.3.3",
+    "electron-builder": "^26.15.2",
+    "prop-types": "^15.7.2",
+    "vite": "^8.0.16",
+    "vitest": "^3.2.6"
+  },
+  "resolutions": {
+    "mini-css-extract-plugin": "2.4.5",
+    "follow-redirects": ">=1.14.7"
+  },
+  "build": {
+    "appId": "sito.elunduscore",
+    "productName": "Elundus Core",
+    "copyright": "Copyright © 2026 ${author}",
+    "win": {
+      "icon": "public/icon.png"
+    },
+    "mac": {
+      "icon": "public/icon.icns"
+    },
+    "files": [
+      "build/**/*",
+      "node_modules/**/*",
+      "public/electron.js",
+      "public/server/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    }
   }
 }
