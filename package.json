@@ -21,7 +21,6 @@
     "dev": "concurrently \"npm run-script start\" \"wait-on http://localhost:3000 && electron .\"",
     "start": "vite",
     "build": "vite build",
-    "test": "vitest",
     "audit:fix": "npx yarn-audit-fix",
     "preelectron-pack": "npm run-script build",
     "electron-pack": "electron-builder"
@@ -59,8 +58,7 @@
     "electron": "^42.3.3",
     "electron-builder": "^26.15.2",
     "prop-types": "^15.7.2",
-    "vite": "^8.0.16",
-    "vitest": "^3.2.6"
+    "vite": "^8.0.16"
   },
   "resolutions": {
     "mini-css-extract-plugin": "2.4.5",
