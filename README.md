@@ -1,6 +1,6 @@
 # Elundus Core (desktop)
 
-[![GitHub build](https://img.shields.io/github/actions/workflow/status/SietseT/ElundusCoreApp/ci.yml?branch=main&style=flat-square)]())
+[![GitHub build](https://img.shields.io/github/actions/workflow/status/SietseT/ElundusCoreApp/ci.yml?branch=main&style=flat-square)]()
 [![GitHub version](https://img.shields.io/github/v/release/SietseT/ElundusCoreApp?style=flat-square)]()
 [![GitHub downloads](https://img.shields.io/github/downloads/SietseT/ElundusCoreApp/total?style=flat-square)]()
 [![GitHub issues](https://img.shields.io/github/issues/SietseT/ElundusCoreApp?style=flat-square)]()
@@ -114,7 +114,6 @@ There are many phones around with operating systems and different browsers. It's
 5. Install the project dependencies `npm i`
 
   <h3>Running and packaging</h3>
-
 
 To run the application with hot-reloading (apart from the NodeJS server), run `npm run dev` in the root of the repository.
 
