@@ -8,9 +8,7 @@ import TextToSpeech from './components/tts/TextToSpeech.vue'
 <template>
   <Layout>
     <Intro />
-    <hr class="my-4 border-border" />
-    <TextToSpeech />
-    <hr class="my-4 border-border" />
-    <Footer />
+    <TextToSpeech class="mt-5" />
+    <Footer class="mt-8" />
   </Layout>
 </template>

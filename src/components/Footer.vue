@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h3 class="text-lg font-semibold mb-2">Need help?</h3>
+  <div class="border-t border-border pt-6">
+    <h3 class="text-sm font-semibold mb-1.5 text-foreground">Need help?</h3>
     <p class="text-muted-foreground">
       Check out this
       <a

@@ -3,6 +3,8 @@ import { ref, computed, watch } from 'vue'
 import { LoaderCircleIcon } from '@lucide/vue'
 import { fetchSpeech } from '../../composables/useStreamlabs'
 import { useTtsStore } from '../../stores/tts'
+import Card from '../ui/Card.vue'
+import CardContent from '../ui/CardContent.vue'
 
 const store = useTtsStore()
 
@@ -62,33 +64,37 @@ function onKeyUp(e) {
 </script>
 
 <template>
-  <form @submit.prevent="handleSubmit" class="flex flex-col gap-4">
+  <Card>
+    <CardContent class="pt-4">
+      <form @submit.prevent="handleSubmit" class="flex flex-col gap-4">
     <!-- Textarea -->
-    <div class="flex flex-col gap-1.5">
-      <label for="text" class="text-sm font-medium text-foreground">Text</label>
-      <textarea
-        id="text"
-        v-model="text"
-        :maxlength="TEXT_MAX_LENGTH"
-        rows="5"
-        placeholder="Type your text here..."
-        aria-label="Text"
-        class="w-full rounded-md border border-input bg-secondary text-foreground placeholder:text-muted-foreground p-3 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-ring transition-colors"
-        @keydown="onKeyDown"
-        @keyup="onKeyUp"
-      />
-      <span class="text-xs text-muted-foreground text-right">{{ charCount }} / {{ TEXT_MAX_LENGTH }}</span>
-    </div>
+      <div class="flex flex-col gap-1.5">
+        <div class="flex items-baseline justify-between">
+          <label for="text" class="text-sm font-medium text-foreground">Text</label>
+          <span class="text-xs text-muted-foreground">{{ charCount }} / {{ TEXT_MAX_LENGTH }}</span>
+        </div>
+        <textarea
+          id="text"
+          v-model="text"
+          :maxlength="TEXT_MAX_LENGTH"
+          rows="5"
+          placeholder="Type your text here..."
+          aria-label="Text"
+          class="w-full rounded-md border border-input bg-background text-foreground placeholder:text-muted-foreground p-3 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-ring transition-colors"
+          @keydown="onKeyDown"
+          @keyup="onKeyUp"
+        />
+      </div>
 
-    <!-- Voice select -->
-    <div class="flex flex-col gap-1.5">
-      <label for="voice" class="text-sm font-medium text-foreground">Voice</label>
-      <select
-        id="voice"
-        v-model="voice"
-        aria-label="Voice"
-        class="w-full rounded-md border border-input bg-secondary text-foreground p-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring transition-colors"
-      >
+      <!-- Voice select -->
+      <div class="flex flex-col gap-1.5">
+        <label for="voice" class="text-sm font-medium text-foreground">Voice</label>
+        <select
+          id="voice"
+          v-model="voice"
+          aria-label="Voice"
+          class="w-full rounded-md border border-input bg-background text-foreground px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring transition-colors"
+        >
         <optgroup label="English (British)">
           <option>Amy</option><option>Brian</option><option>Emma</option>
         </optgroup>
@@ -182,24 +188,26 @@ function onKeyUp(e) {
     </div>
 
     <!-- Clear text checkbox -->
-    <label class="flex items-center gap-2 text-sm text-foreground cursor-pointer select-none">
-      <input
-        type="checkbox"
-        v-model="clearText"
-        aria-label="Clear text after submitting"
-        class="rounded border-input"
-      />
-      Clear text after submitting
-    </label>
+      <label class="flex items-center gap-2 text-sm text-muted-foreground cursor-pointer select-none">
+        <input
+          type="checkbox"
+          v-model="clearText"
+          aria-label="Clear text after submitting"
+          class="rounded border-input accent-primary"
+        />
+        Clear text after submitting
+      </label>
 
-    <!-- Submit button -->
-    <button
-      type="submit"
-      :disabled="isLoading"
-      class="w-full inline-flex items-center justify-center gap-2 rounded-md bg-primary text-primary-foreground font-medium px-4 py-2 text-sm hover:bg-primary/90 disabled:opacity-50 disabled:pointer-events-none transition-colors"
-    >
-      <LoaderCircleIcon v-if="isLoading" class="h-4 w-4 animate-spin" />
-      {{ isLoading ? 'Loading...' : 'Submit' }}
-    </button>
-  </form>
+      <!-- Submit button -->
+      <button
+        type="submit"
+        :disabled="isLoading"
+        class="w-full inline-flex items-center justify-center gap-2 rounded-md bg-primary text-primary-foreground font-medium px-4 py-2 text-sm hover:bg-primary/90 disabled:opacity-50 disabled:pointer-events-none transition-colors"
+      >
+        <LoaderCircleIcon v-if="isLoading" class="h-4 w-4 animate-spin" />
+        {{ isLoading ? 'Loading...' : 'Submit' }}
+      </button>
+    </form>
+    </CardContent>
+  </Card>
 </template>
