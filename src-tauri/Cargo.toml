@@ -1,0 +1,29 @@
+[package]
+name = "elundus-core"
+version = "0.8.0"
+description = "Elundus Core Desktop App"
+authors = ["Sietse Trommelen"]
+edition = "2021"
+
+[lib]
+name = "elundus_core_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+reqwest = { version = "0.12", features = ["json"] }
+
+[profile.dev]
+incremental = true
+
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = "s"
+panic = "abort"
+strip = true

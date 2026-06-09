@@ -1,0 +1,30 @@
+{
+  "productName": "Elundus Core",
+  "version": "0.8.0",
+  "identifier": "com.elundus.core",
+  "build": {
+    "beforeDevCommand": "npm run vite:dev",
+    "beforeBuildCommand": "npm run vite:build",
+    "devUrl": "http://localhost:3000",
+    "frontendDist": "../build"
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "icon": ["../public/icon.icns", "../public/icon.ico", "../public/icon.png"]
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "Elundus Core",
+        "width": 1024,
+        "height": 750,
+        "minWidth": 330,
+        "minHeight": 190
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  }
+}

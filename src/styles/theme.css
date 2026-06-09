@@ -1,97 +1,175 @@
+@import "tailwindcss";
+
+/* ── shadcn-vue CSS variable palette ───────────────────────────────────── */
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --radius: 0.5rem;
+}
+
+/* Light theme */
+:root {
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+  --primary: 221.2 83.2% 53.3%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 210 40% 96%;
+  --secondary-foreground: 222.2 47.4% 11.2%;
+  --muted: 210 40% 96%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --accent: 210 40% 96%;
+  --accent-foreground: 222.2 47.4% 11.2%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 221.2 83.2% 53.3%;
+}
+
+/* Dark theme — toggled by adding class="dark" to <html> */
+.dark {
+  --background: 222.2 84% 4.9%;
+  --foreground: 210 40% 98%;
+  --card: 217.2 32.6% 12%;
+  --card-foreground: 210 40% 98%;
+  --primary: 217.2 91.2% 59.8%;
+  --primary-foreground: 222.2 47.4% 11.2%;
+  --secondary: 217.2 32.6% 17.5%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 217.2 32.6% 17.5%;
+  --muted-foreground: 215 20.2% 65.1%;
+  --accent: 217.2 32.6% 17.5%;
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 217.2 32.6% 22%;
+  --input: 217.2 32.6% 22%;
+  --ring: 224.3 76.3% 48%;
+}
+
+/* ── Base ────────────────────────────────────────────────────────────────── */
 html {
-    user-select: none;
-    -webkit-user-select: none;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 body {
-    background-color: var(--primary-color) !important; 
-    transition: color .15s ease-in-out,background-color .15s ease-in-out
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
 }
 
-.dark-theme {
-    --primary-color: #2e2e2e;
-    --secondary-color: #393939;
-    --text-color: #fff;
+/* ── Audio player ────────────────────────────────────────────────────────── */
+
+.audio-player {
+  height: 50px;
+  width: 100%;
+  background: #007bff;
+  box-shadow: 0 0 20px 0 #000a;
+  font-family: arial;
+  color: white;
+  font-size: 0.75em;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: 6px auto;
 }
 
-.light-theme {
-    --primary-color: #ffffff;
-    --secondary-color: #f5f5f5;
-    --text-color: #000000;
+.audio-player .timeline {
+  background: white;
+  width: 100%;
+  position: relative;
+  box-shadow: 0 2px 10px 0 #0008;
 }
 
-.input-group-voice:after {
-  width: 0; 
-  height: 10px; 
-  border-left: 6px solid transparent;
-  border-right: 6px solid transparent;
-  border-top: 6px solid var(--text-color);
+.audio-player .timeline .progress {
+  background: #278fff;
+  width: 0%;
+  height: 100%;
+  transition: 0.25s;
+  border-radius: 0;
+}
+
+.audio-player .controls {
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+  padding: 0 20px;
+}
+
+.audio-player .controls > * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.audio-player .controls .toggle-play.play {
+  cursor: pointer;
+  position: relative;
+  left: 0;
+  height: 0;
+  width: 0;
+  border: 7px solid transparent;
+  border-left: 13px solid white;
+}
+
+.audio-player .controls .toggle-play.play:hover {
+  transform: scale(1.1);
+}
+
+.audio-player .controls .toggle-play.pause {
+  height: 15px;
+  width: 20px;
+  cursor: pointer;
+  position: relative;
+}
+
+.audio-player .controls .toggle-play.pause:before {
   position: absolute;
-  top: 37%;
-  right: 10px;
+  top: 0;
+  left: 0;
+  background: white;
   content: "";
-  z-index: 98;
-  background-color: var(--secondary-color);
-  transition: background-color .15s ease-in-out;
+  height: 15px;
+  width: 3px;
 }
 
-.container__main {
-    background-color: var(--primary-color);
-    color: var(--text-color);
-    transition: color .15s ease-in-out,background-color .15s ease-in-out;
+.audio-player .controls .toggle-play.pause:after {
+  position: absolute;
+  top: 0;
+  right: 8px;
+  background: white;
+  content: "";
+  height: 15px;
+  width: 3px;
 }
 
-#text {
-    background-color: var(--secondary-color);
-    color: var(--text-color);
-    transition: color .15s ease-in-out,background-color .15s ease-in-out;
+.audio-player .controls .time {
+  display: flex;
+  gap: 8px;
+  flex-grow: 1;
+  justify-content: flex-end;
 }
 
-#text::placeholder {
-    color: var(--text-color);
-    transition: color .15s ease-in-out;
-}
+/* ── Scrollbar ───────────────────────────────────────────────────────────── */
 
-#select-voice {
-    background-color: var(--secondary-color);
-    color: var(--text-color);
-    transition: color .15s ease-in-out,background-color .15s ease-in-out;
-}
-
-#voice {
-    background-color: var(--secondary-color);
-    color: var(--text-color);
-    transition: color .15s ease-in-out,background-color .15s ease-in-out;
-}
-
-.card {
-    background-color: var(--secondary-color) !important;
-    transition: background-color .15s ease-in-out;
-}
-
-#themeSwitch {
-    border: 0em solid;
-    border-radius: .25rem;
-    background-color: #007bff;
-    color: #fff;
-}
-
-#themeSwitch:hover {
-    background-color: #0069d9;
-}
-
-::-webkit-scrollbar {
-    width: 7px;
-}
-
-::-webkit-srollbar-track {
-    background: #f1f1f1;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #888;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #555;
-}
+::-webkit-scrollbar { width: 7px; }
+::-webkit-scrollbar-track { background: #f1f1f1; }
+::-webkit-scrollbar-thumb { background: #888; }
+::-webkit-scrollbar-thumb:hover { background: #555; }
