@@ -15,10 +15,18 @@ export async function fetchSpeech(voice, text) {
     return { speakUrl, error: null }
   } catch (err) {
     if (err === '422') {
-      return { speakUrl: null, error: apiError('Text length too long. The use of too many non-alphanumeric/weird characters can cause this.') }
+      return {
+        speakUrl: null,
+        error: apiError(
+          'Text length too long. The use of too many non-alphanumeric/weird characters can cause this.'
+        ),
+      }
     }
     if (err === '429') {
-      return { speakUrl: null, error: apiError('Rate limit reached. Please try again in a minute.') }
+      return {
+        speakUrl: null,
+        error: apiError('Rate limit reached. Please try again in a minute.'),
+      }
     }
     return { speakUrl: null, error: apiError() }
   }

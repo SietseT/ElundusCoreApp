@@ -1,5 +1,6 @@
 {
   "name": "elundus-core",
+  "type": "module",
   "description": "Use this simple desktop application to simulate StreamElements text-to-speech (TTS) voice messages for Twitch. Hear how a donation for your favorite streamer sounds like!",
   "version": "0.8.0",
   "author": {
@@ -12,7 +13,10 @@
     "build": "tauri build",
     "vite:dev": "vite",
     "vite:build": "vite build",
-    "audit:fix": "npx yarn-audit-fix"
+    "audit:fix": "npx yarn-audit-fix",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write \"src/**/*.{js,vue,css,html,json}\""
   },
   "dependencies": {
     "@lucide/vue": "^1.17.0",
@@ -22,12 +26,18 @@
     "vue": "^3"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@tailwindcss/vite": "^4",
     "@tauri-apps/cli": "^2",
     "@vitejs/plugin-vue": "^6",
     "@vueuse/core": "^13",
     "class-variance-authority": "^0.7",
     "clsx": "^2",
+    "eslint": "^10.4.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.6",
+    "eslint-plugin-vue": "^10.9.2",
+    "prettier": "^3.8.4",
     "radix-vue": "^1",
     "tailwind-merge": "^2",
     "tailwindcss": "^4",

@@ -6,9 +6,9 @@ import TextToSpeech from './components/tts/TextToSpeech.vue'
 </script>
 
 <template>
-    <Layout>
-        <Intro />
-        <TextToSpeech class="mt-5" />
-        <Footer class="mt-8" />
-    </Layout>
+  <Layout>
+    <Intro />
+    <TextToSpeech class="mt-5" />
+    <Footer class="mt-8" />
+  </Layout>
 </template>

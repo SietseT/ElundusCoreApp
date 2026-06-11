@@ -5,7 +5,7 @@ const props = defineProps({
   variant: {
     type: String,
     default: 'default',
-    validator: (v) => ['default', 'destructive'].includes(v),
+    validator: v => ['default', 'destructive'].includes(v),
   },
   class: String,
 })
@@ -19,7 +19,13 @@ const variants = {
 <template>
   <div
     role="alert"
-    :class="cn('relative w-full rounded-lg border border-border p-4 [&>svg~*]:pl-7 [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4', variants[variant], props.class)"
+    :class="
+      cn(
+        'relative w-full rounded-lg border border-border p-4 [&>svg~*]:pl-7 [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4',
+        variants[variant],
+        props.class
+      )
+    "
   >
     <slot />
   </div>
