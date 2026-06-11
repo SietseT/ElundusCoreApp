@@ -1,7 +1,6 @@
 {
   "productName": "Elundus Core",
-  "version": "0.8.0",
-  "identifier": "com.elundus.core",
+  "identifier": "sito.elunduscore",
   "build": {
     "beforeDevCommand": "npm run vite:dev",
     "beforeBuildCommand": "npm run vite:build",
