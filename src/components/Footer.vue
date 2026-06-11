@@ -2,8 +2,8 @@
 import { openUrl } from '@tauri-apps/plugin-opener'
 
 const links = {
-  reddit: 'https://www.reddit.com/r/xqcow/comments/bmjfng/all_brian_tts_characters_from_amazon_polly_used/',
-  characters: 'https://gist.github.com/TETYYS/f1aa16b18fb619fc6c0f13ba4f9ae70d',
+    reddit: 'https://www.reddit.com/r/xqcow/comments/bmjfng/all_brian_tts_characters_from_amazon_polly_used/',
+    characters: 'https://gist.github.com/TETYYS/f1aa16b18fb619fc6c0f13ba4f9ae70d',
 }
 </script>
 
