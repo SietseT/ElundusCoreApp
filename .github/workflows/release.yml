@@ -43,8 +43,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tagName: ${{ github.ref_name }}
-          releaseName: 'Elundus Core ${{ github.ref_name }}'
+          tagName: 'v__VERSION__'
+          releaseName: 'v__VERSION__'
           releaseDraft: true
           prerelease: false
           args: ${{ matrix.args }}
