@@ -1,19 +1,22 @@
 import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import vue from '@vitejs/plugin-vue'
+import tailwindcss from '@tailwindcss/vite'
+import { fileURLToPath, URL } from 'node:url'
 
 export default defineConfig({
-  plugins: [react()],
-  // Use relative paths so the Electron file:// protocol works for production builds
-  base: './',
+  plugins: [vue(), tailwindcss()],
+  resolve: {
+    alias: {
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+    },
+  },
+  clearScreen: false,
   build: {
     outDir: 'build',
   },
   server: {
     port: 3000,
-    // Don't open the browser automatically (Electron handles the window)
+    strictPort: true,
     open: false,
   },
-  // electron.js and server/ in public/ are Electron/Node files, not web assets.
-  // Disable automatic copying of publicDir to keep the build output clean.
-  publicDir: false,
 })

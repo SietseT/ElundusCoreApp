@@ -1,53 +1,46 @@
 {
   "name": "elundus-core",
+  "type": "module",
   "description": "Use this simple desktop application to simulate StreamElements text-to-speech (TTS) voice messages for Twitch. Hear how a donation for your favorite streamer sounds like!",
-  "version": "0.8.1",
   "author": {
     "name": "Sietse Trommelen"
   },
   "repository": "https://github.com/SietseTrommelen/ElundusCoreApp",
   "private": true,
-  "main": "./public/electron.js",
-  "publish": {
-    "provider": "github",
-    "repo": "ElundusCoreApp",
-    "owner": "SietseTrommelen",
-    "host": "github.com",
-    "protocol": "https",
-    "releaseType": "draft"
-  },
   "scripts": {
-    "dev": "concurrently \"npm run-script start\" \"wait-on http://localhost:3000 && electron .\"",
-    "start": "vite",
-    "build": "vite build",
+    "dev": "tauri dev",
+    "build": "tauri build",
+    "vite:dev": "vite",
+    "vite:build": "vite build",
     "audit:fix": "npx yarn-audit-fix",
-    "preelectron-pack": "npm run-script build",
-    "electron-pack": "electron-builder"
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write \"src/**/*.{js,vue,css,html,json}\""
   },
   "dependencies": {
-    "cors": "^2.8.5",
-    "electron-is-dev": "^2.0.0",
-    "electron-log": "^4.3.3",
-    "electron-updater": "^6.1.4",
-    "express": "^4.17.1"
+    "@lucide/vue": "^1.17.0",
+    "@tauri-apps/api": "^2",
+    "@tauri-apps/plugin-opener": "^2.5.4",
+    "pinia": "^3",
+    "vue": "^3"
   },
   "devDependencies": {
-    "@vitejs/plugin-react": "^6.0.2",
-    "axios": "^1.17.0",
-    "concurrently": "^7.0.0",
-    "electron": "^42.3.3",
-    "electron-builder": "^26.15.2",
-    "prop-types": "^15.7.2",
-    "react": "^17.0.2",
-    "react-bootstrap": "^1.5.2",
-    "react-dom": "^17.0.2",
-    "react-redux": "^7.2.3",
-    "redux": "^4.0.5",
-    "vite": "^8.0.16",
-    "wait-on": "^9.0.10"
-  },
-  "resolutions": {
-    "follow-redirects": ">=1.14.7"
+    "@eslint/js": "^10.0.1",
+    "@tailwindcss/vite": "^4",
+    "@tauri-apps/cli": "^2",
+    "@vitejs/plugin-vue": "^6",
+    "@vueuse/core": "^13",
+    "class-variance-authority": "^0.7",
+    "clsx": "^2",
+    "eslint": "^10.4.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.6",
+    "eslint-plugin-vue": "^10.9.2",
+    "prettier": "^3.8.4",
+    "radix-vue": "^1",
+    "tailwind-merge": "^2",
+    "tailwindcss": "^4",
+    "vite": "^8.0.16"
   },
   "browserslist": {
     "production": [
@@ -60,32 +53,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "build": {
-    "appId": "sito.elunduscore",
-    "productName": "Elundus Core",
-    "copyright": "Copyright © 2026 ${author}",
-    "win": {
-      "icon": "public/icon.png"
-    },
-    "mac": {
-      "icon": "public/icon.icns",
-      "target": [
-        {
-          "target": "dmg",
-          "arch": [
-            "universal"
-          ]
-        }
-      ]
-    },
-    "files": [
-      "build/**/*",
-      "public/electron.js",
-      "public/server/**/*"
-    ],
-    "directories": {
-      "buildResources": "assets"
-    }
   }
 }
