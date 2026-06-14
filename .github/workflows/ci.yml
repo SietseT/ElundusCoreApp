@@ -4,12 +4,12 @@ on:
   push:
     branches: [main, develop]
     paths:
-      - "src/**"
-      - "src-tauri/**"
-      - "index.html"
-      - "vite.config.js"
-      - "package.json"
-      - "package-lock.json"
+      - 'src/**'
+      - 'src-tauri/**'
+      - 'index.html'
+      - 'vite.config.js'
+      - 'package.json'
+      - 'package-lock.json'
   pull_request:
     branches: [main]
 
@@ -25,12 +25,12 @@ jobs:
     runs-on: ${{ matrix.platform }}
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
-          node-version: "22"
-          cache: "npm"
+          node-version: '24'
+          cache: 'npm'
 
       - uses: dtolnay/rust-toolchain@stable
 
