@@ -13,9 +13,12 @@ const message = computed(() => {
 </script>
 
 <template>
-  <Alert v-if="store.error" variant="destructive">
-    <p class="font-semibold mb-1">{{ title }}</p>
-    <!-- eslint-disable-next-line vue/no-v-html -->
-    <p class="text-sm" v-html="message" />
+  <Alert v-if="store.error" variant="destructive" class="shadow-md">
+    <div class="flex items-start gap-3">
+      <div class="flex-1">
+        <p class="font-semibold text-sm">{{ title }}</p>
+        <p class="text-sm mt-1 opacity-90">{{ message }}</p>
+      </div>
+    </div>
   </Alert>
 </template>

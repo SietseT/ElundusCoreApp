@@ -4,11 +4,8 @@ const props = defineProps({ class: String })
 </script>
 
 <template>
-  <div
-    :class="
-      cn('rounded-lg border border-border bg-card text-card-foreground shadow-sm', props.class)
-    "
-  >
+  <div :class="cn('rounded-xl border border-border bg-card text-card-foreground shadow-sm hover:shadow-md transition-shadow', props.class)
+    ">
     <slot />
   </div>
 </template>

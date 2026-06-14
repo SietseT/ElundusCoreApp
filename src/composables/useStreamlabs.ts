@@ -1,11 +1,11 @@
 import { invoke } from '@tauri-apps/api/core'
 
-function apiError(message) {
+function apiError(message: string) {
   if (!message) message = 'Something went wrong when reaching the API.'
   return { error: 'Oops..', message }
 }
 
-export async function fetchSpeech(voice, text) {
+export async function fetchSpeech(voice: string, text: string) {
   if (!voice || !text) {
     return { speakUrl: null, error: apiError('You need to fill in some text.') }
   }
@@ -28,6 +28,6 @@ export async function fetchSpeech(voice, text) {
         error: apiError('Rate limit reached. Please try again in a minute.'),
       }
     }
-    return { speakUrl: null, error: apiError() }
+    return { speakUrl: null, error: apiError('Something went wrong when reaching the API.') }
   }
 }

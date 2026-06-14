@@ -1,6 +1,8 @@
 <script setup>
 import { ref } from 'vue'
 import { invoke } from '@tauri-apps/api/core'
+import { DownloadIcon } from '@lucide/vue'
+import Button from '../ui/Button.vue'
 
 const props = defineProps({
   src: { type: String, required: true },
@@ -31,11 +33,8 @@ async function handleDownload() {
 </script>
 
 <template>
-  <button
-    :disabled="downloading"
-    class="w-full inline-flex items-center justify-center rounded-md border border-primary text-primary font-medium px-4 py-2 text-sm hover:bg-primary hover:text-primary-foreground disabled:opacity-50 disabled:pointer-events-none transition-colors"
-    @click="handleDownload"
-  >
-    {{ downloading ? 'Downloading...' : 'Download' }}
-  </button>
+  <Button variant="outline" :disabled="downloading" class="w-full" @click="handleDownload">
+    <DownloadIcon class="h-4 w-4 mr-2" />
+    {{ downloading ? 'Downloading...' : 'Download MP3' }}
+  </Button>
 </template>

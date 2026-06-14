@@ -86,14 +86,27 @@ html.is-theme-transitioning *::after {
 /* ── Scrollbar ───────────────────────────────────────────────────────────── */
 
 ::-webkit-scrollbar {
-  width: 7px;
+  width: 8px;
+  height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: hsl(var(--muted));
 }
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: hsl(var(--muted-foreground) / 0.3);
+  border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: hsl(var(--muted-foreground) / 0.5);
+}
+
+/* ── Animations ──────────────────────────────────────────────────────────── */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
 }

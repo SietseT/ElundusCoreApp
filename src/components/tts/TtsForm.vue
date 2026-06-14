@@ -4,7 +4,13 @@ import { LoaderCircleIcon } from '@lucide/vue'
 import { fetchSpeech } from '../../composables/useStreamlabs'
 import { useTtsStore } from '../../stores/tts'
 import Card from '../ui/Card.vue'
+import CardHeader from '../ui/CardHeader.vue'
 import CardContent from '../ui/CardContent.vue'
+import Label from '../ui/Label.vue'
+import Textarea from '../ui/Textarea.vue'
+import Select from '../ui/Select.vue'
+import Checkbox from '../ui/Checkbox.vue'
+import Button from '../ui/Button.vue'
 
 const store = useTtsStore()
 
@@ -69,38 +75,35 @@ function onKeyUp(e) {
 
 <template>
   <Card>
-    <CardContent class="pt-4">
-      <form class="flex flex-col gap-4" @submit.prevent="handleSubmit">
+    <CardHeader>
+      <h2 class="text-xl font-semibold tracking-tight">Text to Speech</h2>
+      <p class="text-sm text-muted-foreground">
+        Enter your text and select a voice to generate speech
+      </p>
+    </CardHeader>
+    <CardContent>
+      <form class="flex flex-col gap-6" @submit.prevent="handleSubmit">
         <!-- Textarea -->
-        <div class="flex flex-col gap-1.5">
+        <div class="flex flex-col gap-2">
           <div class="flex items-baseline justify-between">
-            <label for="text" class="text-sm font-medium text-foreground">Text</label>
-            <span class="text-xs text-muted-foreground"
-              >{{ charCount }} / {{ TEXT_MAX_LENGTH }}</span
-            >
+            <Label for="text">Message</Label>
+            <span class="text-xs text-muted-foreground">{{ charCount }} / {{ TEXT_MAX_LENGTH }}</span>
           </div>
-          <textarea
-            id="text"
-            v-model="text"
-            :maxlength="TEXT_MAX_LENGTH"
-            rows="5"
-            placeholder="Type your text here..."
-            aria-label="Text"
-            class="w-full rounded-md border border-input bg-background text-foreground placeholder:text-muted-foreground p-3 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-ring transition-colors"
-            @keydown="onKeyDown"
-            @keyup="onKeyUp"
-          />
+          <Textarea id="text" v-model="text" :maxlength="TEXT_MAX_LENGTH" :rows="6" placeholder="Type your text here..."
+            @keydown="onKeyDown" @keyup="onKeyUp" />
+          <p class="text-xs text-muted-foreground">
+            Press <kbd class="px-1.5 py-0.5 text-xs font-semibold bg-muted rounded">Enter</kbd> to
+            submit, or
+            <kbd class="px-1.5 py-0.5 text-xs font-semibold bg-muted rounded">Shift</kbd> +
+            <kbd class="px-1.5 py-0.5 text-xs font-semibold bg-muted rounded">Enter</kbd> for a new
+            line
+          </p>
         </div>
 
         <!-- Voice select -->
-        <div class="flex flex-col gap-1.5">
-          <label for="voice" class="text-sm font-medium text-foreground">Voice</label>
-          <select
-            id="voice"
-            v-model="voice"
-            aria-label="Voice"
-            class="w-full rounded-md border border-input bg-background text-foreground px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring transition-colors"
-          >
+        <div class="flex flex-col gap-2">
+          <Label for="voice">Voice</Label>
+          <Select id="voice" v-model="voice">
             <optgroup label="English (British)">
               <option>Amy</option>
               <option>Brian</option>
@@ -220,31 +223,19 @@ function onKeyUp(e) {
             <optgroup label="Welsh">
               <option>Gwyneth</option>
             </optgroup>
-          </select>
+          </Select>
         </div>
 
         <!-- Clear text checkbox -->
-        <label
-          class="flex items-center gap-2 text-sm text-muted-foreground cursor-pointer select-none"
-        >
-          <input
-            v-model="clearText"
-            type="checkbox"
-            aria-label="Clear text after submitting"
-            class="rounded border-input accent-primary"
-          />
+        <Checkbox id="clearText" v-model="clearText">
           Clear text after submitting
-        </label>
+        </Checkbox>
 
         <!-- Submit button -->
-        <button
-          type="submit"
-          :disabled="isLoading"
-          class="w-full inline-flex items-center justify-center gap-2 rounded-md bg-primary text-primary-foreground font-medium px-4 py-2 text-sm hover:bg-primary/90 disabled:opacity-50 disabled:pointer-events-none transition-colors"
-        >
+        <Button type="submit" :disabled="isLoading" class="w-full">
           <LoaderCircleIcon v-if="isLoading" class="h-4 w-4 animate-spin" />
-          {{ isLoading ? 'Loading...' : 'Submit' }}
-        </button>
+          {{ isLoading ? 'Generating...' : 'Generate speech' }}
+        </Button>
       </form>
     </CardContent>
   </Card>

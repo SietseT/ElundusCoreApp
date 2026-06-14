@@ -10,9 +10,14 @@ const store = useTtsStore()
 </script>
 
 <template>
-  <Card v-if="store.voiceBlobUrl">
+  <Card v-if="store.voiceBlobUrl" class="border-primary/20">
     <CardHeader>
-      <h3 class="text-sm font-semibold text-card-foreground">Result</h3>
+      <h3 class="text-base font-semibold">Generated speech</h3>
+      <p class="text-xs text-muted-foreground mt-1">
+        Voice: {{ store.voice }} • Text: "{{ store.text.slice(0, 50) }}{{
+          store.text.length > 50 ? '...' : ''
+        }}"
+      </p>
     </CardHeader>
     <CardContent class="flex flex-col gap-3">
       <AudioPlayer :src="store.voiceBlobUrl" />

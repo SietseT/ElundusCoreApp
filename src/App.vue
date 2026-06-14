@@ -7,8 +7,10 @@ import TextToSpeech from './components/tts/TextToSpeech.vue'
 
 <template>
   <Layout>
-    <Intro />
-    <TextToSpeech class="mt-5" />
-    <Footer class="mt-8" />
+    <div class="space-y-8">
+      <Intro />
+      <TextToSpeech />
+      <Footer />
+    </div>
   </Layout>
 </template>
