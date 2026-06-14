@@ -6,6 +6,16 @@ updates:
       interval: 'weekly'
     open-pull-requests-limit: 10
 
+  - package-ecosystem: 'cargo'
+    directory: '/src-tauri'
+    schedule:
+      interval: 'weekly'
+    open-pull-requests-limit: 10
+    ignore:
+      - dependency-name: 'glib'
+        # Ignore until Tauri supports glib 0.20.0+
+        # Current Tauri 2.11.2 depends on gtk 0.18.x which requires glib 0.18.x
+
   - package-ecosystem: 'github-actions'
     directory: '/'
     schedule:
