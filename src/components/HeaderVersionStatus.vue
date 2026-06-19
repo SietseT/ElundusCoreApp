@@ -22,7 +22,8 @@ const showCheckNow = computed(() => {
     return (
         status.value !== UpdaterStatus.Checking &&
         status.value !== UpdaterStatus.Downloading &&
-        status.value !== UpdaterStatus.SkippedDev
+        status.value !== UpdaterStatus.SkippedDev &&
+        status.value !== UpdaterStatus.Available
     )
 })
 </script>
