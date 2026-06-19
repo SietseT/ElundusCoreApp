@@ -32,10 +32,10 @@ export async function initializeUpdater() {
     appVersion.value = import.meta.env.DEV ? 'dev' : 'unknown'
   }
 
-  //   if (import.meta.env.DEV) {
-  //     status.value = UpdaterStatus.SkippedDev
-  //     return
-  //   }
+  if (import.meta.env.DEV) {
+    status.value = UpdaterStatus.SkippedDev
+    return
+  }
 
   await checkForAppUpdates()
 }
