@@ -87,38 +87,47 @@ There are many phones around with operating systems and different browsers. It's
 
 # Contributing
 
-  <h3>Cloning and installing dependencies </h3>
+## Prerequisites
 
-<summary><b> Windows</b></summary>
+- [Node.js 22+](https://nodejs.org/en/download)
+- Rust (stable), including Cargo: [rustup.rs](https://rustup.rs/)
+- Tauri system dependencies: [Tauri prerequisites](https://tauri.app/start/prerequisites/)
 
-1. You can use [Git](https://git-scm.com/downloads) as the CLI but it is not required
+## Clone and install
 
-2. Install [NodeJS 22](https://nodejs.org/en/download)
+```sh
+git clone https://github.com/SietseT/ElundusCoreApp.git
+cd ElundusCoreApp
+npm install
+```
 
-3. Clone the project `git clone https://github.com/SietseT/ElundusCoreApp.git`
+## Development
 
-4. Go in the project folder `cd ElundusCoreApp`
+Run the app with hot-reloading:
 
-5. And finally, install the project dependencies `npm install`
+```sh
+npm run dev
+```
 
-  <summary><b> Mac</b></summary>
+## Build installers
 
-1. Use [Homebrew](https://brew.sh/) to install Git `brew install git`
+Build production bundles for your current platform:
 
-2. Use Homebrew to install Node `brew install node@22`
+```sh
+npm run build
+```
 
-3. Clone the project `git clone https://github.com/SietseT/ElundusCoreApp.git`
+Artifacts are generated in `src-tauri/target/release/bundle`.
 
-4. Go in the project folder `cd ElundusCoreApp`
+## Create a release
 
-5. Install the project dependencies `npm i`
+The GitHub Actions release workflow is triggered by a version tag:
 
-  <h3>Running and packaging</h3>
+```sh
+git tag v1.0.1
+git push origin v1.0.1
+```
 
-To run the application with hot-reloading (apart from the NodeJS server), run `npm run dev` in the root of the repository.
+It builds and uploads signed Tauri bundles for macOS and Windows.
 
-To compile the app and make an installer run `npm run electron-pack -- -w` for Windows or `npm run electron-pack -- -m` for macOS (produces a universal `.dmg` that runs on both Intel and Apple Silicon). Use `npm run electron-pack -- -mw` to package for both platforms at once.
-
-Check the [Electron CLI documentation](https://www.electron.build/cli.html) for information on building for other platforms.
-
-If you made somes changes and want them added in the main project, submit a pull-request and I'll look at it and decide if it will be added.
+If you make changes and want them added to the main project, open a pull request.

@@ -49,6 +49,7 @@ async fn download_speech(url: String) -> Result<Vec<u8>, String> {
 pub fn run() {
     tauri::Builder::default()
         .plugin(tauri_plugin_opener::init())
+        .plugin(tauri_plugin_updater::Builder::new().build())
         .invoke_handler(tauri::generate_handler![fetch_speech, download_speech])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

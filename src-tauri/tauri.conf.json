@@ -9,8 +9,18 @@
   },
   "bundle": {
     "active": true,
+    "createUpdaterArtifacts": true,
     "targets": "all",
     "icon": ["../public/icon.icns", "../public/icon.ico", "../public/icon.png"]
+  },
+  "plugins": {
+    "updater": {
+      "active": true,
+      "endpoints": [
+        "https://github.com/SietseTrommelen/ElundusCoreApp/releases/latest/download/latest.json"
+      ],
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDc4NzY2QzEyMkMzNjhGNjYKUldSbWp6WXNFbXgyZUVCRDJVaDRoOU5qckJsNXVwcG82bEVPNGtZRWZ6NUdHZ2ZVME9jVmdnYTYK"
+    }
   },
   "app": {
     "windows": [
