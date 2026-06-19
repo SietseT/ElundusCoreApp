@@ -1,6 +1,6 @@
 [package]
 name = "elundus-core"
-version = "1.0.2"
+version = "1.0.3"
 description = "Elundus Core Desktop App"
 authors = ["Sietse Trommelen"]
 edition = "2024"

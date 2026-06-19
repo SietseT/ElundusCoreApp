@@ -23,7 +23,8 @@ const showCheckNow = computed(() => {
         status.value !== UpdaterStatus.Checking &&
         status.value !== UpdaterStatus.Downloading &&
         status.value !== UpdaterStatus.SkippedDev &&
-        status.value !== UpdaterStatus.Available
+        status.value !== UpdaterStatus.Available &&
+        status.value !== UpdaterStatus.Installed
     )
 })
 </script>
@@ -40,6 +41,9 @@ const showCheckNow = computed(() => {
                 Update {{ availableVersion }} available
             </span>
             <span v-else-if="status === UpdaterStatus.Downloading">Installing update...</span>
+            <span v-else-if="status === UpdaterStatus.Installed" class="text-primary font-medium">
+                Update downloaded. Restart the app to finish installing.
+            </span>
 
             <button v-if="showCheckNow" type="button"
                 class="underline underline-offset-4 hover:text-foreground transition-colors cursor-pointer disabled:opacity-50 disabled:pointer-events-none"
@@ -49,7 +53,7 @@ const showCheckNow = computed(() => {
 
             <Button v-if="status === UpdaterStatus.Available" variant="outline" class="h-6 px-2 text-[11px]"
                 @click="installUpdate">
-                Update and restart
+                Download update
             </Button>
         </div>
     </div>
