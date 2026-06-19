@@ -6,12 +6,32 @@ import {
     UpdaterStatus,
     useUpdater,
 } from '../composables/useUpdater'
-import { computed } from 'vue'
+import { computed, onBeforeUnmount, ref } from 'vue'
 
 const { appVersion, status, availableVersion } = useUpdater()
+const showToast = ref(false)
+
+let toastTimer = null
+
+function showUpToDateToast() {
+    showToast.value = true
+
+    if (toastTimer) {
+        clearTimeout(toastTimer)
+    }
+
+    toastTimer = setTimeout(() => {
+        showToast.value = false
+        toastTimer = null
+    }, 2800)
+}
 
 async function checkNow() {
     await checkForAppUpdates()
+
+    if (status.value === UpdaterStatus.UpToDate) {
+        showUpToDateToast()
+    }
 }
 
 async function installUpdate() {
@@ -26,6 +46,13 @@ const showCheckNow = computed(() => {
         status.value !== UpdaterStatus.Available &&
         status.value !== UpdaterStatus.Installed
     )
+})
+
+onBeforeUnmount(() => {
+    if (toastTimer) {
+        clearTimeout(toastTimer)
+        toastTimer = null
+    }
 })
 </script>
 
@@ -45,16 +72,38 @@ const showCheckNow = computed(() => {
                 Update downloaded. Restart the app to finish installing.
             </span>
 
-            <button v-if="showCheckNow" type="button"
+            <button
+                v-if="showCheckNow"
+                type="button"
                 class="underline underline-offset-4 hover:text-foreground transition-colors cursor-pointer disabled:opacity-50 disabled:pointer-events-none"
-                :disabled="status === UpdaterStatus.Checking || status === UpdaterStatus.Downloading" @click="checkNow">
+                :disabled="status === UpdaterStatus.Checking || status === UpdaterStatus.Downloading"
+                @click="checkNow">
                 Check for updates
             </button>
 
-            <Button v-if="status === UpdaterStatus.Available" variant="outline" class="h-6 px-2 text-[11px]"
+            <Button
+                v-if="status === UpdaterStatus.Available"
+                variant="outline"
+                class="h-6 px-2 text-[11px]"
                 @click="installUpdate">
                 Download update
             </Button>
-        </div>
     </div>
+    </div>
+
+    <Teleport to="body">
+        <Transition
+            enter-active-class="transition duration-200 ease-out"
+            enter-from-class="opacity-0 translate-y-2"
+            enter-to-class="opacity-100 translate-y-0"
+            leave-active-class="transition duration-150 ease-in"
+            leave-from-class="opacity-100 translate-y-0"
+            leave-to-class="opacity-0 translate-y-2">
+            <div
+                v-if="showToast"
+                class="fixed left-1/2 -translate-x-1/2 top-6 z-50 rounded-md border border-emerald-600/30 bg-emerald-600 text-white shadow-lg px-3 py-2 text-sm font-medium">
+                You're up to date.
+            </div>
+        </Transition>
+    </Teleport>
 </template>
