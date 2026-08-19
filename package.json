@@ -22,7 +22,7 @@
     "@tauri-apps/api": "^2",
     "@tauri-apps/plugin-updater": "^2",
     "@tauri-apps/plugin-opener": "^2.5.4",
-    "pinia": "^3",
+    "pinia": "^4",
     "vue": "^3"
   },
   "devDependencies": {
