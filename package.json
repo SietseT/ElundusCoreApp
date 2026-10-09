@@ -30,7 +30,7 @@
     "@tailwindcss/vite": "^4",
     "@tauri-apps/cli": "^2",
     "@vitejs/plugin-vue": "^6",
-    "@vueuse/core": "^14",
+    "@vueuse/core": "^15",
     "class-variance-authority": "^0.7",
     "clsx": "^2",
     "eslint": "^10.11.0",
