@@ -14,13 +14,19 @@ const links = {
       <h3 class="text-base font-semibold text-foreground">Need help?</h3>
       <p class="text-sm text-muted-foreground leading-relaxed">
         Check out this
-        <a href="#"
+        <a
+          href="#"
           class="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors font-medium"
-          @click.prevent="openUrl(links.reddit)">Reddit post</a>
+          @click.prevent="openUrl(links.reddit)"
+          >Reddit post</a
+        >
         with some examples. There's a
-        <a href="#"
+        <a
+          href="#"
           class="text-primary underline underline-offset-4 hover:text-primary/80 transition-colors font-medium"
-          @click.prevent="openUrl(links.characters)">list of characters</a>
+          @click.prevent="openUrl(links.characters)"
+          >list of characters</a
+        >
         which explains how Brian pronounces most characters.
       </p>
     </div>

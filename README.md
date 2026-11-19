@@ -1,9 +1,9 @@
 # Elundus Core (desktop)
 
-[![GitHub build](https://img.shields.io/github/actions/workflow/status/SietseT/ElundusCoreApp/ci.yml?branch=main&style=flat-square)]()
-[![GitHub version](https://img.shields.io/github/v/release/SietseT/ElundusCoreApp?style=flat-square)]()
-[![GitHub downloads](https://img.shields.io/github/downloads/SietseT/ElundusCoreApp/total?style=flat-square)]()
-[![GitHub issues](https://img.shields.io/github/issues/SietseT/ElundusCoreApp?style=flat-square)]()
+[![GitHub build](https://img.shields.io/github/actions/workflow/status/SietseT/ElundusCoreApp/ci.yml?branch=main&style=flat-square)](<>)
+[![GitHub version](https://img.shields.io/github/v/release/SietseT/ElundusCoreApp?style=flat-square)](<>)
+[![GitHub downloads](https://img.shields.io/github/downloads/SietseT/ElundusCoreApp/total?style=flat-square)](<>)
+[![GitHub issues](https://img.shields.io/github/issues/SietseT/ElundusCoreApp?style=flat-square)](<>)
 
 Elundus Core is a desktop application you can use to simulate/preview text-to-speech (TTS) voice messages for Twitch. It's a port of the website that I've initially created for the same purpose.
 
@@ -27,7 +27,8 @@ Elundus Core is a desktop application you can use to simulate/preview text-to-sp
 # Features
 
 - Text-to-speech conversion for Amazon Polly voices (same voices are used by StreamElements and StreamLabs)
-- Download converted TTS sound (see FAQ)
+- Download converted TTS sound as MP3 (see FAQ)
+- History of your last 20 messages, so you can replay or download them again without hitting the rate limit
 - No more Recaptcha! 🎉
 - Windows and MacOS support
 - Auto-updater, so you'll receive the latest features and fixes automatically
@@ -79,8 +80,8 @@ This setup still works to this day, but having to host more and more proxies as 
 <details>
   <summary><b>Why is there no phone support?</b></summary>
   <br />
-  
-There are many phones around with operating systems and different browsers. It's hard to make a working website and continue developing features tested for all devices, that's why I converted the website to a desktop only app. 
+
+There are many phones around with operating systems and different browsers. It's hard to make a working website and continue developing features tested for all devices, that's why I converted the website to a desktop only app.
 </details>
 
 ---

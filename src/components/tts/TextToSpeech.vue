@@ -2,6 +2,7 @@
 import TtsForm from './TtsForm.vue'
 import SoundPlayer from './SoundPlayer.vue'
 import ErrorAlert from './ErrorAlert.vue'
+import HistoryList from './HistoryList.vue'
 </script>
 
 <template>
@@ -10,6 +11,7 @@ import ErrorAlert from './ErrorAlert.vue'
     <div class="flex flex-col gap-6">
       <ErrorAlert />
       <SoundPlayer />
+      <HistoryList />
     </div>
   </div>
 </template>

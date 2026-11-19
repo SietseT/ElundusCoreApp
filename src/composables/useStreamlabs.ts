@@ -25,9 +25,14 @@ export async function fetchSpeech(voice: string, text: string) {
     if (err === '429') {
       return {
         speakUrl: null,
-        error: apiError('Rate limit reached. Please try again in a minute.'),
+        rateLimited: true,
+        error: apiError('Rate limit reached. You can try again when the countdown ends.'),
       }
     }
     return { speakUrl: null, error: apiError('Something went wrong when reaching the API.') }
   }
+}
+
+export async function downloadSpeech(speakUrl: string): Promise<ArrayBuffer> {
+  return invoke<ArrayBuffer>('download_speech', { url: speakUrl })
 }

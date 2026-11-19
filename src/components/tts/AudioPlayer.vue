@@ -1,17 +1,16 @@
 <script setup>
 import { ref, watch, onMounted, onUnmounted } from 'vue'
-import { PlayIcon, PauseIcon, Loader2Icon } from '@lucide/vue'
-import { invoke } from '@tauri-apps/api/core'
+import { PlayIcon, PauseIcon } from '@lucide/vue'
 
 const props = defineProps({
-  src: { type: String, required: true },
+  // Raw MP3 bytes. The parent re-keys this component per entry, so it mounts once per clip.
+  bytes: { type: ArrayBuffer, required: true },
 })
 
 const playing = ref(false)
 const progressBarWidth = ref(0)
 const currentDurationString = ref('0:00')
 const totalDurationString = ref('-:--')
-const isLoading = ref(false)
 
 const progressBarRef = ref(null)
 let audio = null
@@ -30,7 +29,7 @@ onMounted(() => {
   audio.addEventListener('durationchange', () => {
     if (isFinite(audio.duration)) totalDurationString.value = formatTime(audio.duration)
   })
-  if (props.src) loadAndPlay(props.src)
+  loadAndPlay(props.bytes)
 })
 
 onUnmounted(() => {
@@ -42,10 +41,8 @@ onUnmounted(() => {
 })
 
 watch(
-  () => props.src,
-  src => {
-    if (src) loadAndPlay(src)
-  }
+  () => props.bytes,
+  bytes => loadAndPlay(bytes)
 )
 
 function revokeBlobUrl() {
@@ -55,25 +52,17 @@ function revokeBlobUrl() {
   }
 }
 
-async function loadAndPlay(src) {
-  isLoading.value = true
+function loadAndPlay(bytes) {
   playing.value = false
   progressBarWidth.value = 0
   currentDurationString.value = '0:00'
   totalDurationString.value = '-:--'
   revokeBlobUrl()
 
-  try {
-    const bytes = await invoke('download_speech', { url: src })
-    currentBlobUrl = URL.createObjectURL(new Blob([new Uint8Array(bytes)], { type: 'audio/mpeg' }))
-    audio.src = currentBlobUrl
-    audio.currentTime = 0
-    audio.play()
-  } catch (err) {
-    console.error('[AudioPlayer] failed to load audio:', err)
-  } finally {
-    isLoading.value = false
-  }
+  currentBlobUrl = URL.createObjectURL(new Blob([bytes], { type: 'audio/mpeg' }))
+  audio.src = currentBlobUrl
+  audio.currentTime = 0
+  audio.play().catch(err => console.error('[AudioPlayer] playback failed:', err))
 }
 
 function onProgress() {
@@ -84,7 +73,7 @@ function onProgress() {
 }
 
 function togglePlay() {
-  if (!audio || isLoading.value) return
+  if (!audio) return
   playing.value ? audio.pause() : audio.play()
   playing.value = !playing.value
 }
@@ -106,19 +95,23 @@ function formatTime(num) {
   <div class="rounded-lg border border-border bg-card overflow-hidden shadow-sm">
     <!-- Seekable progress bar -->
     <div ref="progressBarRef" class="h-2 bg-muted/50 cursor-pointer relative group" @click="seek">
-      <div class="h-full bg-primary transition-all duration-100 ease-out relative"
-        :style="{ width: progressBarWidth + '%' }">
+      <div
+        class="h-full bg-primary transition-all duration-100 ease-out relative"
+        :style="{ width: progressBarWidth + '%' }"
+      >
         <div
-          class="absolute right-0 top-1/2 -translate-y-1/2 h-3 w-3 rounded-full bg-primary opacity-0 group-hover:opacity-100 transition-opacity" />
+          class="absolute right-0 top-1/2 -translate-y-1/2 h-3 w-3 rounded-full bg-primary opacity-0 group-hover:opacity-100 transition-opacity"
+        />
       </div>
     </div>
     <!-- Controls -->
     <div class="flex items-center gap-3 px-4 py-3 bg-card">
-      <button :aria-label="playing ? 'Pause' : 'Play'" :disabled="isLoading"
+      <button
+        :aria-label="playing ? 'Pause' : 'Play'"
         class="h-8 w-8 flex items-center justify-center rounded-full bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-40 disabled:hover:bg-primary transition-all focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 cursor-pointer disabled:cursor-not-allowed"
-        @click="togglePlay">
-        <Loader2Icon v-if="isLoading" class="h-4 w-4 animate-spin" />
-        <PauseIcon v-else-if="playing" class="h-4 w-4" />
+        @click="togglePlay"
+      >
+        <PauseIcon v-if="playing" class="h-4 w-4" />
         <PlayIcon v-else class="h-4 w-4 ml-0.5" />
       </button>
       <div class="flex-1 flex items-center gap-2">

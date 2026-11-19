@@ -1,4 +1,6 @@
 use reqwest::StatusCode;
+use tauri::ipc::Response;
+use tauri_plugin_dialog::DialogExt;
 
 #[tauri::command]
 async fn fetch_speech(voice: String, text: String) -> Result<String, String> {
@@ -33,7 +35,7 @@ async fn fetch_speech(voice: String, text: String) -> Result<String, String> {
 }
 
 #[tauri::command]
-async fn download_speech(url: String) -> Result<Vec<u8>, String> {
+async fn download_speech(url: String) -> Result<Response, String> {
     let client = reqwest::Client::new();
     let response = client.get(&url).send().await.map_err(|e| e.to_string())?;
 
@@ -42,7 +44,31 @@ async fn download_speech(url: String) -> Result<Vec<u8>, String> {
     }
 
     let bytes = response.bytes().await.map_err(|e| e.to_string())?;
-    Ok(bytes.to_vec())
+    // Raw response: arrives in JS as an ArrayBuffer instead of a JSON number array.
+    Ok(Response::new(bytes.to_vec()))
+}
+
+/// Opens a native "Save as" dialog and writes the audio to the chosen path.
+/// Returns `false` when the user cancels the dialog.
+#[tauri::command]
+async fn save_speech(
+    app: tauri::AppHandle,
+    file_name: String,
+    bytes: Vec<u8>,
+) -> Result<bool, String> {
+    let Some(path) = app
+        .dialog()
+        .file()
+        .set_file_name(&file_name)
+        .add_filter("MP3 audio", &["mp3"])
+        .blocking_save_file()
+    else {
+        return Ok(false);
+    };
+
+    let path = path.into_path().map_err(|e| e.to_string())?;
+    std::fs::write(&path, bytes).map_err(|e| e.to_string())?;
+    Ok(true)
 }
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
@@ -50,7 +76,8 @@ pub fn run() {
     tauri::Builder::default()
         .plugin(tauri_plugin_opener::init())
         .plugin(tauri_plugin_updater::Builder::new().build())
-        .invoke_handler(tauri::generate_handler![fetch_speech, download_speech])
+        .plugin(tauri_plugin_dialog::init())
+        .invoke_handler(tauri::generate_handler![fetch_speech, download_speech, save_speech])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

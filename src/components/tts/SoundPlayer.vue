@@ -10,18 +10,17 @@ const store = useTtsStore()
 </script>
 
 <template>
-  <Card v-if="store.voiceBlobUrl" class="border-primary/20">
+  <Card v-if="store.current" class="border-primary/20">
     <CardHeader>
       <h3 class="text-base font-semibold">Generated speech</h3>
       <p class="text-xs text-muted-foreground mt-1">
-        Voice: {{ store.voice }} • Text: "{{ store.text.slice(0, 50) }}{{
-          store.text.length > 50 ? '...' : ''
-        }}"
+        Voice: {{ store.current.voice }} • Text: "{{ store.current.text.slice(0, 50)
+        }}{{ store.current.text.length > 50 ? '...' : '' }}"
       </p>
     </CardHeader>
     <CardContent class="flex flex-col gap-3">
-      <AudioPlayer :src="store.voiceBlobUrl" />
-      <DownloadVoice :src="store.voiceBlobUrl" />
+      <AudioPlayer :key="store.current.id" :bytes="store.current.audio" />
+      <DownloadVoice :entry="store.current" />
     </CardContent>
   </Card>
 </template>
