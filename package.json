@@ -18,30 +18,30 @@
     "format": "prettier --write \"src/**/*.{js,vue,css,html,json}\""
   },
   "dependencies": {
-    "@lucide/vue": "^1.47.0",
-    "@tauri-apps/api": "^2",
-    "@tauri-apps/plugin-updater": "^2",
-    "@tauri-apps/plugin-opener": "^2.5.5",
-    "pinia": "^4",
-    "vue": "^3"
+    "@lucide/vue": "^1.76.0",
+    "@tauri-apps/api": "^2.12.5",
+    "@tauri-apps/plugin-updater": "^2.14.1",
+    "@tauri-apps/plugin-opener": "^2.7.3",
+    "pinia": "^4.1.0",
+    "vue": "^3.5.45"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@tailwindcss/vite": "^4",
-    "@tauri-apps/cli": "^2",
-    "@vitejs/plugin-vue": "^6",
-    "@vueuse/core": "^15",
-    "class-variance-authority": "^0.7",
-    "clsx": "^2",
-    "eslint": "^10.11.0",
+    "@tailwindcss/vite": "^4.3.5",
+    "@tauri-apps/cli": "^2.12.6",
+    "@vitejs/plugin-vue": "^6.0.11",
+    "@vueuse/core": "^15.0.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "eslint": "^10.15.0",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-prettier": "^5.5.6",
-    "eslint-plugin-vue": "^10.11.0",
-    "prettier": "^3.9.6",
-    "radix-vue": "^1",
-    "tailwind-merge": "^3",
-    "tailwindcss": "^4",
-    "vite": "^8.3.0"
+    "eslint-plugin-prettier": "^5.5.7",
+    "eslint-plugin-vue": "^10.12.1",
+    "prettier": "^3.10.1",
+    "radix-vue": "^1.9.17",
+    "tailwind-merge": "^3.7.0",
+    "tailwindcss": "^4.3.5",
+    "vite": "^8.3.8"
   },
   "browserslist": {
     "production": [
