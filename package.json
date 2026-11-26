@@ -18,7 +18,7 @@
     "format": "prettier --write \"src/**/*.{js,vue,css,html,json}\""
   },
   "dependencies": {
-    "@lucide/vue": "^1.76.0",
+    "@lucide/vue": "^1.78.0",
     "@tauri-apps/api": "^2.12.5",
     "@tauri-apps/plugin-updater": "^2.14.1",
     "@tauri-apps/plugin-opener": "^2.7.3",
