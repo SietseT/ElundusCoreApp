@@ -39,7 +39,7 @@
     "eslint-plugin-vue": "^10.12.1",
     "prettier": "^3.10.1",
     "radix-vue": "^1.9.17",
-    "tailwind-merge": "^3.7.0",
+    "tailwind-merge": "^3.7.1",
     "tailwindcss": "^4.3.5",
     "vite": "^8.3.8"
   },
